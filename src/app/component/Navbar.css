@@ -1,0 +1,113 @@
+.nav_bar {
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  background-color: green;
+  border-bottom: 0.1px solid #ccc;
+  color: white;
+  padding: 10px;
+  padding-right: 10px;
+  align-items: center;
+}
+
+.nav_bottom {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  margin-left: 20px;
+  align-items: center;
+}
+
+.bottom_button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav_bottom p {
+  margin-top: 20px;
+  margin-right: 30px;
+  margin-left: 40px;
+  font-weight: 400;
+}
+
+.nav_bar_top {
+  display: flex;
+
+  width: 100%;
+  top: 0;
+
+  left: 0;
+  color: white;
+  justify-content: space-between;
+}
+
+.right_plan {
+  display: flex;
+  border: 1px;
+}
+
+.plan_meal {
+  border: 3px solid white;
+  margin-right: 50px;
+  padding-right: 20px;
+  padding-top: 0px;
+}
+
+.plan_meal P {
+  font-size: larger;
+  font-weight: 600;
+}
+
+.modal_button Button {
+  padding: 10px;
+  margin-top: 20px;
+  /* border: 1px solid black; */
+}
+
+.nav_left {
+  margin: 10px;
+  margin-left: 60px;
+}
+
+.nav_middle {
+  margin: 20px;
+  width: 25%;
+  margin-top: 30px;
+}
+.nav_right {
+  display: flex;
+
+  margin-bottom: 10px;
+  margin-top: 30px;
+  margin-right: 60px;
+}
+
+.nav_right p {
+  border-right: 1px solid white;
+
+  text-align: right;
+
+  align-items: right;
+  margin-right: 20px;
+}
+
+.nav_right h4 {
+  font-weight: 100;
+  margin-bottom: 20px;
+  /* margin-top: 16px; */
+}
+
+.search-box {
+  width: 100%;
+  margin: 10px;
+  background-color: white;
+  color: green;
+  border-radius: 10px;
+  /* border: 1px solid black; */
+}
+
+.myaccount {
+  padding: 10px;
+  padding-top: 15px;
+}

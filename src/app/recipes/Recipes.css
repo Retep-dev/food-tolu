@@ -1,0 +1,221 @@
+.main_container {
+  margin-top: 220px;
+}
+
+.main_container p {
+  font-size: 20px;
+}
+.main_container h1 {
+  font-size: 80px;
+}
+
+.bethefirst {
+  display: flex;
+  flex-direction: row;
+}
+
+.bethefirst p {
+  margin-right: 20px;
+  padding-right: 20px;
+}
+
+.bethefirst_left {
+  border-right: 1px solid #ccc;
+}
+
+.bethefirst_right {
+  font-weight: 700;
+}
+.bethefirst_righty {
+  font-weight: 400;
+}
+
+.Save {
+  background-color: green;
+  display: flex;
+  padding-right: 30px;
+  padding-left: 10px;
+  color: white;
+}
+
+.Rate_share {
+  background-color: #ccc;
+  display: flex;
+  padding-right: 20px;
+}
+
+.share_section {
+  display: flex;
+}
+.share_section p {
+  margin: 15px;
+}
+
+.share_icon {
+  margin-top: 15px;
+}
+
+.Print {
+  display: flex;
+}
+
+.Print p {
+  border-left: 1px solid grey;
+  padding-left: 10px;
+}
+
+.image_section {
+  margin-top: 50px;
+}
+
+.addphoto {
+  color: green;
+  font-size: 30px;
+  margin-top: 10px;
+  margin-left: 60px;
+}
+
+.addphotocontainer {
+  margin-top: 10px;
+  border: 1px dashed grey;
+  width: 160px;
+}
+
+.addphotocontainer p {
+  margin-left: 30px;
+  margin-top: 0;
+}
+
+.time_container {
+  display: flex;
+  margin-left: 30px;
+}
+
+.time_container h3 {
+  margin-right: 150px;
+  font-size: 25px;
+  margin-bottom: 0;
+}
+
+.time_container p {
+  margin-right: 210px;
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.time_time {
+  margin-top: 30px;
+  border: 1px solid grey;
+  border-top: 20px solid green;
+  width: 890px;
+  padding-bottom: 80px;
+  margin-bottom: 100px;
+}
+
+.ingredients h1 {
+  font-size: 60px;
+}
+
+.list-with-colored-bullets {
+  list-style: none;
+}
+
+.list-with-colored-bullets li {
+  font-size: 25px;
+}
+.list-with-colored-bullets li::before {
+  content: "•"; /* Unicode character for bullet */
+
+  font-size: 30px; /* Adjust the font size as needed */
+  line-height: 50px; /* Adjust the line height to match font size */
+  margin-right: 10px;
+  margin: 20px;
+  color: green;
+  display: inline-block;
+  width: 1rem; /* Adjust the width as needed */
+  margin-left: -1em; /* Negative margin to overlap the bullet with the text */
+}
+
+.directions h1 {
+  font-size: 50px;
+}
+
+.directions h3 {
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.directions p {
+  margin-top: 0;
+  width: 900px;
+  font-size: 25px;
+}
+
+.made_it_section {
+  margin-top: 70px;
+  display: flex;
+}
+
+.made_it {
+  border: 1px solid green;
+  width: 400px;
+  margin-right: 50px;
+  background-color: green;
+  color: white;
+}
+
+.made_it h3 {
+  margin-left: 150px;
+}
+
+.made_it_print {
+  border: 5px solid green;
+  width: 400px;
+}
+.made_it_print h3 {
+  margin-left: 150px;
+}
+
+.share_icon_print {
+  color: green;
+  margin-left: 10px;
+}
+
+.nutritional_fact h1 {
+  font-size: 50px;
+}
+
+.nutritional_fact {
+  display: flex;
+  margin-top: 60px;
+  padding-top: 25px;
+  border-top: 1px solid grey;
+  width: 900px;
+}
+.nutritional_fact p {
+  margin-top: 25px;
+  margin-left: 10px;
+  font-size: 25px;
+}
+
+.time_container_2 {
+  display: flex;
+  margin-left: 30px;
+}
+
+.time_container_2 h3 {
+  margin-right: 240px;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.reviews {
+  margin-top: 50px;
+}
+.reviews h1 {
+  font-size: 50px;
+}
+
+.reviews p {
+  font-size: 25px;
+}
