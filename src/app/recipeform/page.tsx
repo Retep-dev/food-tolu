@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface IngredientData {
   name: string;
@@ -32,11 +32,11 @@ const FormPage: React.FC = () => {
     quantity: "",
   });
 
-  // const data: any = [formEntries];
   const [data, setData] = useState([formEntries]);
   const [ingredientsData, setIngredientsData] = useState([
     { name: "", quantity: "" },
   ]);
+
   const [curItem, setCurItem] = useState(0);
   const [curIngrItem, setCurIngrItem] = useState(0);
 
@@ -47,6 +47,7 @@ const FormPage: React.FC = () => {
   ) => {
     const { name, value } = e.target;
     console.log(value);
+
     setFormEntries((prevEntries) => {
       console.log(prevEntries);
       return {
@@ -56,11 +57,8 @@ const FormPage: React.FC = () => {
     });
   };
 
-  console.log(formEntries);
   const handleIngredientChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    index: number,
-    i: number
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
     setingredientEntries((prevEntries) => {
@@ -71,10 +69,11 @@ const FormPage: React.FC = () => {
       };
     });
   };
-  // console.log(formEntries);
+
   const handleAddEntry = () => {
     const prevData = data;
     const prevFormEntries = formEntries;
+    ingredientsData.splice(-1, 1);
     prevFormEntries.ingredient = [...ingredientsData];
 
     prevData[curItem] = prevFormEntries;
@@ -83,12 +82,14 @@ const FormPage: React.FC = () => {
       name: "",
       quantity: "",
     });
+
     setIngredientsData([
       {
         name: "",
         quantity: "",
       },
     ]);
+
     setFormEntries({
       name: "",
       description: "",
@@ -97,35 +98,81 @@ const FormPage: React.FC = () => {
       instructions: "",
       ingredient: [{ name: "", quantity: "" }],
     });
-    console.log(data);
-    setData([...prevData, formEntries]);
-    setCurItem(data.length);
+
+    // console.log(data);
+
+    if (data.length - 1 <= curItem) {
+      setData([
+        ...prevData,
+        {
+          name: "",
+          description: "",
+          cookingTime: "",
+          image: "",
+          instructions: "",
+          ingredient: [{ name: "", quantity: "" }],
+        },
+      ]);
+      setCurItem((prev) => prev + 1);
+      setCurIngrItem(0);
+    } else {
+      setData([...prevData]);
+      setCurItem((prev) => prev + 1);
+      setCurIngrItem(0);
+    }
   };
+
   const handleingredientAddEntry = (index: number) => {
     const prevData = ingredientsData;
-    prevData?.push(ingredientEntries);
-    setIngredientsData(prevData);
-    setingredientEntries({
-      name: "",
-      quantity: "",
-    });
-
-    // const prevFormData = data;
-    // prevFormData[index].ingredient = ingredientsData;
-    // setData(prevFormData);
-    console.log(data);
+    prevData[curIngrItem] = ingredientEntries;
+    // console.log(prevData);
+    let addItems = ingredientsData.length - 1 <= curIngrItem;
+    if (addItems) {
+      setIngredientsData([
+        ...prevData,
+        {
+          name: "",
+          quantity: "",
+        },
+      ]);
+      setingredientEntries({
+        name: "",
+        quantity: "",
+      });
+      setCurIngrItem((prev) => prev + 1);
+    } else {
+      setIngredientsData([...prevData]);
+      setingredientEntries({
+        name: "",
+        quantity: "",
+      });
+      setCurIngrItem((prev) => prev + 1);
+    }
   };
 
-  console.log(data[curItem]);
+  // console.log(ingredientsData);
+
+  const viewPrevFormData = (index: number) => {
+    setCurItem(index);
+    setFormEntries(data[index]);
+    setIngredientsData((prev) => [...formEntries.ingredient]);
+    setCurIngrItem(0);
+    setingredientEntries(formEntries.ingredient[0]);
+  };
 
   const handleSubmit = () => {
     // Handle submission logic here
 
     const prevFormEntries = formEntries;
-    prevFormEntries.ingredient = [ingredientEntries];
-    console.log(prevFormEntries);
-    return;
-    submitRecipes();
+    ingredientsData.splice(-1, 1);
+    prevFormEntries.ingredient = [...ingredientsData];
+    const prevData = data;
+    if (data.length - 1 <= curItem) {
+      prevData[curItem] = prevFormEntries;
+    }
+    console.log(data);
+
+    submitRecipes(data);
     console.log("Submitted Entries:", formEntries);
     // Reset form entries after submission
     setFormEntries({
@@ -137,143 +184,9 @@ const FormPage: React.FC = () => {
       ingredient: [ingredientEntries],
     });
   };
-  const submitRecipes = () => {
-    let data = JSON.stringify([
-      {
-        name: "Garri",
-        description: "A rich chocolate sponge cake",
-        cooking_time: "45 minutes",
-        instructions: "Mix ingredients, bake at 350 degrees for 35 minutes.",
-        img_url: "https://source.unsplash.com/1600x900/?chocolate-cake",
-        ingredients: [
-          {
-            name: "Flour",
-            quantity: "2 cups",
-          },
-          {
-            name: "Cocoa Powder",
-            quantity: "1 cup",
-          },
-        ],
-      },
-      {
-        name: "Vegetable Soup",
-        description: "A hearty vegetable soup",
-        cooking_time: "30 minutes",
-        instructions: "Boil vegetables in stock until tender.",
-        img_url: "https://source.unsplash.com/1600x900/?vegetable-soup",
-        ingredients: [
-          {
-            name: "Carrot",
-            quantity: "2 cups",
-          },
-          {
-            name: "Potato",
-            quantity: "3 cups",
-          },
-        ],
-      },
-      {
-        name: "Chocolate Cake Deluxe",
-        description: "A luxurious chocolate sponge cake with extra cocoa",
-        cooking_time: "50 minutes",
-        instructions:
-          "Mix ingredients thoroughly, bake at 350 degrees for 40 minutes.",
-        img_url: "https://source.unsplash.com/1600x900/?chocolate-cake-deluxe",
-        ingredients: [
-          {
-            name: "Flour",
-            quantity: "2 cups",
-          },
-          {
-            name: "Cocoa Powder",
-            quantity: "1.5 cups",
-          },
-          {
-            name: "Chocolate Chips",
-            quantity: "1 cup",
-          },
-        ],
-      },
-      {
-        name: "Quick Vegetable Soup",
-        description: "A simple and quick vegetable soup",
-        cooking_time: "25 minutes",
-        instructions: "Simmer all vegetables until fully cooked.",
-        img_url: "https://source.unsplash.com/1600x900/?quick-vegetable-soup",
-        ingredients: [
-          {
-            name: "Carrot",
-            quantity: "2 cups",
-          },
-          {
-            name: "Peas",
-            quantity: "1 cup",
-          },
-        ],
-      },
-      {
-        name: "Banana Bread",
-        description: "Moist and hearty banana bread",
-        cooking_time: "60 minutes",
-        instructions:
-          "Mix all ingredients and bake at 375 degrees for 50 minutes.",
-        img_url: "https://source.unsplash.com/1600x900/?banana-bread",
-        ingredients: [
-          {
-            name: "Banana",
-            quantity: "3 large",
-          },
-          {
-            name: "Flour",
-            quantity: "2 cups",
-          },
-        ],
-      },
-      {
-        name: "Apple Pie",
-        description: "Classic apple pie with a flaky crust",
-        cooking_time: "1 hour 20 minutes",
-        instructions: "Prepare crust, fill with apples and spices, and bake.",
-        img_url: "https://source.unsplash.com/1600x900/?apple-pie",
-        ingredients: [
-          {
-            name: "Apple",
-            quantity: "6 medium",
-          },
-          {
-            name: "Flour",
-            quantity: "3 cups",
-          },
-          {
-            name: "Butter",
-            quantity: "1 cup",
-          },
-        ],
-      },
-      {
-        name: "Caesar Salad",
-        description:
-          "Crisp lettuce and croutons dressed with parmesan cheese and Caesar dressing",
-        cooking_time: "15 minutes",
-        instructions: "Toss lettuce with dressing, cheese, and croutons.",
-        img_url: "https://source.unsplash.com/1600x900/?caesar-salad",
-        ingredients: [
-          {
-            name: "Romaine Lettuce",
-            quantity: "3 heads",
-          },
-          {
-            name: "Parmesan Cheese",
-            quantity: "1/2 cup",
-          },
-          {
-            name: "Croutons",
-            quantity: "2 cups",
-          },
-        ],
-      },
-    ]);
+
+  const submitRecipes = (recipeData: any) => {
+    let data = JSON.stringify(recipeData);
 
     let config = {
       method: "post",
@@ -296,6 +209,7 @@ const FormPage: React.FC = () => {
         console.log(error);
       });
   };
+
   return (
     <div className="mt-[220px] flex flex-row bg-white">
       <div className="w-1/5"></div>
@@ -306,7 +220,7 @@ const FormPage: React.FC = () => {
         <div className="flex flex-wrap">
           {data.map((entry: any, index: number) => (
             <h2
-              onClick={() => setCurItem(index)}
+              onClick={() => viewPrevFormData(index)}
               key={index}
               style={{
                 background: curItem == index ? "#008000" : "",
@@ -379,19 +293,24 @@ const FormPage: React.FC = () => {
             <div className="flex flex-col">
               <label className="mt-[37px]">Ingredient:</label>
               <div className="flex flex-wrap items-center">
-                {ingredientsData.map((entry, index) => (
-                  <h2
-                    onClick={() => setCurIngrItem(index)}
-                    key={index}
-                    style={{
-                      background: curIngrItem == index ? "#008000" : "",
-                      color: curIngrItem != index ? "#008000" : "white",
-                    }}
-                    className="border-2 cursor-pointer border-[#008000]  p-[5px] px-[10px] bg-white text-[#008000] mb-[20px]"
-                  >
-                    {index + 1}
-                  </h2>
-                ))}
+                {ingredientsData.map((entry, index) => {
+                  return (
+                    <h2
+                      onClick={() => {
+                        setCurIngrItem(index);
+                        setingredientEntries(ingredientsData[index]);
+                      }}
+                      key={index}
+                      style={{
+                        background: curIngrItem == index ? "#008000" : "",
+                        color: curIngrItem != index ? "#008000" : "white",
+                      }}
+                      className="border-2 cursor-pointer border-[#008000]  p-[5px] px-[10px] bg-white text-[#008000] mb-[20px]"
+                    >
+                      {index + 1}
+                    </h2>
+                  );
+                })}
               </div>
 
               <div className="flex w-[100%] space-x-2 my-2">
@@ -400,8 +319,8 @@ const FormPage: React.FC = () => {
                   <input
                     type="text"
                     name="name"
-                    // value={ingredientEntry.name}
-                    onChange={(e) => handleChange(e, 1, null)}
+                    value={ingredientEntries.name}
+                    onChange={(e) => handleIngredientChange(e)}
                     className=" border-2 border-[#008000] "
                   />
                 </div>
@@ -410,8 +329,8 @@ const FormPage: React.FC = () => {
                   <input
                     type="text"
                     name="quantity"
-                    // value={ingredientEntry.quantity}
-                    onChange={(e) => handleChange(e, 1, null)}
+                    value={ingredientEntries.quantity}
+                    onChange={(e) => handleIngredientChange(e)}
                     className=" border-2 border-[#008000] "
                   />
                 </div>
@@ -451,3 +370,21 @@ const FormPage: React.FC = () => {
 };
 
 export default FormPage;
+
+// {
+//   name: "Garri",
+//   description: "A rich chocolate sponge cake",
+//   cooking_time: "45 minutes",
+//   instructions: "Mix ingredients, bake at 350 degrees for 35 minutes.",
+//   img_url: "https://source.unsplash.com/1600x900/?chocolate-cake",
+//   ingredients: [
+//     {
+//       name: "Flour",
+//       quantity: "2 cups",
+//     },
+//     {
+//       name: "Cocoa Powder",
+//       quantity: "1 cup",
+//     },
+//   ],
+// }

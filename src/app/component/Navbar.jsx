@@ -1,4 +1,6 @@
 "use client";
+
+import axios from "axios";
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -10,6 +12,7 @@ import "./Navbar.css";
 import PlanForm from "./PlanForm";
 import CookForm from "./CookForm";
 import Link from "next/link";
+import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 
 function Navbar() {
   const [open1, setOpen1] = React.useState(false);
@@ -50,6 +53,32 @@ function Navbar() {
     p: 4,
   };
 
+  const handleSearch = (e) => {
+    const data = JSON.stringify({
+      ingredients: ["Flour"],
+    });
+
+    const config = {
+      method: "get",
+      maxBodyLength: Infinity,
+      url: "https://72b6-102-88-84-26.ngrok-free.app/recipes",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTcxMjI3MTAwMywidXNlcl9pZCI6ImNmNjhjODlkLThhYTEtNGRmZC04ZDI1LTQ3NmU4ODlkMDkwMiJ9.eCiaReR6OG_KnYiDZw1ZgAsEyNIK2nsfHA84cR0QD9s",
+      },
+      data: data,
+    };
+
+    axios
+      .request(config)
+      .then((response) => {
+        console.log(JSON.stringify(response.data));
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="nav_bar z-10 h-[220px] w-screen">
       <div className="nav_bar_top">
@@ -88,6 +117,10 @@ function Navbar() {
               value={searchTerm}
               placeholder="search recipe"
               onChange={(e) => handleInput(e)}
+            />
+            <SearchRoundedIcon
+              className="ml-[60px]"
+              onClick={(e) => handleSearch(e)}
             />
           </div>
           {/* <TextField

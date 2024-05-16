@@ -27,7 +27,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/app/component/Star.jsx",
-    "src/app/component/Navbar.jsx",
+    "src/app/component/Navbar.tsx",
     "src/app/component/CookForm.jsx",
     "src/app/component/PlanForm.jsx"
   ],
