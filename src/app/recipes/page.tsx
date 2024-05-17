@@ -1,17 +1,32 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import "./Recipes.css";
 import FavoriteBorderSharpIcon from "@mui/icons-material/FavoriteBorderSharp";
 import StarOutlineSharpIcon from "@mui/icons-material/StarOutlineSharp";
 import PrintSharpIcon from "@mui/icons-material/PrintSharp";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
+import { useRouter } from "next/navigation";
 
 function Recipes() {
+  const [data, setData]: any = useState();
+  const router = useRouter();
+  useEffect(() => {
+    let link = location.href.split("?data=")[1];
+
+    if (!link) {
+      router.push("/");
+      return;
+    }
+    let d = window.atob(link);
+    setData(JSON.parse(d));
+  }, []);
+  console.log(data);
   return (
     <div className="main_container bg-white flex flex-row items-center w-screen">
       <div className="w-1/4"></div>
       <div className="ml-[50px] flex flex-col items-left ">
-        <h1 className="copperplate-text mt-[50px]">Chicken Minestrone Soup</h1>
+        <h1 className="copperplate-text mt-[50px]">{data?.name ?? ""}</h1>
         <div className="bethefirst">
           <p className="bethefirst_left">
             <a href="#" className="underline">
@@ -24,10 +39,7 @@ function Recipes() {
             </a>
           </p>
         </div>
-        <p className="w-3/4 mt-[20px]">
-          Take a classic minestrone soup full of fresh, wholesome vegetables,
-          and add an additional layer of flavor with tender, juicy chicken.
-        </p>
+        <p className="w-3/4 mt-[20px]">{data?.description ?? ""}</p>
         <div className="bethefirst mt-[20px]">
           <p className="bethefirst_left">Submitted by lutzflcat </p>
           <p className="bethefirst_righty">Published on February 16, 2023</p>
@@ -49,11 +61,7 @@ function Recipes() {
           </div>
         </div>
         <div className="image_section">
-          <img
-            src="https://www.nairaland.com/attachments/5738702_fufuyt_jpeg4b65d1bfeadad4aa30cc4c95de9146f4"
-            width={900}
-            alt="Food"
-          ></img>
+          <img src={data?.img_url ?? ""} width={900} alt="Food"></img>
           <div></div>
         </div>
         <div className="addphotocontainer">
@@ -62,45 +70,39 @@ function Recipes() {
         </div>
         <div className="time_time">
           <div className="time_container mt-[20px]">
-            <h3>Prep Time:</h3>
+            {/* <h3>Prep Time:</h3> */}
             <h3>Cook Time:</h3>
-            <h3>Total Time:</h3>
+            {/* <h3>Total Time:</h3> */}
           </div>
           <div className="time_container ">
-            <p>20 mins</p>
-            <p>35 mins</p>
-            <p>55 mins</p>
+            {/* <p>20 mins</p> */}
+            <p>{data?.cooking_time ?? ""}</p>
+            {/* <p>55 mins</p> */}
           </div>
           <div className="time_container mt-[20px]">
-            <h3>Servings:</h3>
+            {/* <h3>Servings:</h3> */}
           </div>
-          <div className="time_container">
-            <p>8</p>
-          </div>
+          <div className="time_container">{/* <p>8</p> */}</div>
         </div>
         <div className="ingredients">
           <h1 className="copperplate-text">Ingredients</h1>
         </div>
         <div className="">
           <ul className="list-with-colored-bullets">
-            <li className="list_text">4 tablespoons olive oil, divided</li>
+            {/* <li className="list_text">{data?.ingredients ?? ""}</li> */}
+            <li>4 tablespoons olive oil, divided</li>
+            {/* <li>4 tablespoons olive oil, divided</li>
             <li>4 tablespoons olive oil, divided</li>
             <li>4 tablespoons olive oil, divided</li>
             <li>4 tablespoons olive oil, divided</li>
-            <li>4 tablespoons olive oil, divided</li>
-            <li>4 tablespoons olive oil, divided</li>
-            <li>4 tablespoons olive oil, divided</li>
+            <li>4 tablespoons olive oil, divided</li> */}
           </ul>
         </div>
         <div className="directions mt-[20px]">
           <h1 className="copperplate-text">Directions</h1>
-          <h3>Step 1</h3>
-          <p>
-            Heat 2 tablespoons olive oil in a large pot over medium heat. Add
-            chicken to pot, and sauté just until lightly browned, about 3
-            minutes. Remove chicken from pot; set aside.
-          </p>
-          <h3>Step 2</h3>
+          <h3>Steps</h3>
+          <p>{data?.instructions ?? ""}</p>
+          {/* <h3>Step 2</h3>
           <p>
             Heat remaining 2 tablespoons olive oil in the pot; add onions and
             cook until translucent, about 3 minutes. Stir in garlic; cook until
@@ -123,7 +125,7 @@ function Recipes() {
           <h1 className="copperplate-text mt-[20px]">Cook's Note:</h1>
           <p>
             If you prefer, feel free to substitute beef stock for chicken stock.
-          </p>
+          </p> */}
         </div>
         <div className="made_it_section h-[50px]">
           <div className="made_it pt-3">
@@ -136,7 +138,7 @@ function Recipes() {
             </h3>
           </div>
         </div>
-        <div className="nutritional_fact">
+        {/* <div className="nutritional_fact">
           <h1 className="copperplate-text">Nutritional Facts</h1>
           <p className="mt-[0px]">(per serving)</p>
         </div>
@@ -159,7 +161,7 @@ function Recipes() {
         <div className="reviews">
           <h1 className="copperplate-text">Reviews</h1>
           <p>Check out our Community Guidelines about reviews.</p>
-        </div>
+        </div> */}
       </div>
       <div className="w-1/4"></div>
     </div>

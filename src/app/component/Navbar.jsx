@@ -13,11 +13,15 @@ import PlanForm from "./PlanForm";
 import CookForm from "./CookForm";
 import Link from "next/link";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
+import { useRouter } from "next/navigation";
+// import { useRouter } from "next/router";
 
 function Navbar() {
+  const [data, setdata] = useState();
   const [open1, setOpen1] = React.useState(false);
   const handleOpen1 = () => setOpen1(true);
   const handleClose1 = () => setOpen1(false);
+  const router = useRouter();
 
   const [open2, setOpen2] = React.useState(false);
   const handleOpen2 = () => setOpen2(true);
@@ -54,14 +58,15 @@ function Navbar() {
   };
 
   const handleSearch = (e) => {
-    const data = JSON.stringify({
-      ingredients: ["Flour"],
+    const axios = require("axios");
+    let data = JSON.stringify({
+      ingredients: [items[0]],
     });
 
-    const config = {
-      method: "get",
+    let config = {
+      method: "post",
       maxBodyLength: Infinity,
-      url: "https://72b6-102-88-84-26.ngrok-free.app/recipes",
+      url: "https://03d2-2c0f-2a80-11-c110-5199-362c-2303-7630.ngrok-free.app/recipes/search",
       headers: {
         "Content-Type": "application/json",
         Authorization:
@@ -73,7 +78,9 @@ function Navbar() {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        setdata(response.data);
+        let d = window.btoa(JSON.stringify(response.data));
+        location.href = "http://localhost:3000/searchpage?data=" + d;
       })
       .catch((error) => {
         console.log(error);
@@ -150,11 +157,13 @@ function Navbar() {
           <Link href="/">
             <p className="copperplate-text">MEALS</p>
           </Link>
-          <Link href="/recipeform">
+          <Link href="/allrecipes">
             <p className="copperplate-text">RECIPES</p>
           </Link>
+          <Link href="/searchpage">
+            <p className="copperplate-text">OCCASIONS</p>
+          </Link>
 
-          <p className="copperplate-text">OCCASIONS</p>
           <p className="copperplate-text">CUISINES</p>
           <p className="copperplate-text">ABOUT US</p>
         </div>
