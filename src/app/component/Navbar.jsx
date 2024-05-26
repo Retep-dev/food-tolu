@@ -1,5 +1,6 @@
 "use client";
 
+import "dotenv/config";
 import axios from "axios";
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
@@ -14,6 +15,7 @@ import CookForm from "./CookForm";
 import Link from "next/link";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { useRouter } from "next/navigation";
+import { BASE_URL } from "../Constants";
 // import { useRouter } from "next/router";
 
 function Navbar() {
@@ -63,10 +65,11 @@ function Navbar() {
       ingredients: [items[0]],
     });
 
+    console.log(process.env.BASE_URL);
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://03d2-2c0f-2a80-11-c110-5199-362c-2303-7630.ngrok-free.app/recipes/search",
+      url: BASE_URL + "/recipes/search",
       headers: {
         "Content-Type": "application/json",
         Authorization:
@@ -79,7 +82,8 @@ function Navbar() {
       .request(config)
       .then((response) => {
         setdata(response.data);
-        let d = window.btoa(JSON.stringify(response.data));
+        console.log(response);
+        let d = window.btoa(JSON.stringify(response.data.message.data));
         location.href = "http://localhost:3000/searchpage?data=" + d;
       })
       .catch((error) => {
@@ -95,40 +99,43 @@ function Navbar() {
           </h1>
         </div>
         <div className="nav_middle">
-          <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
-            {items &&
-              items.map((item, i) => {
-                return (
-                  <p
-                    className="p-2 cursor-pointer rounded-lg bg-[#008000]  text-white m-1"
-                    key={i}
-                  >
-                    {item}{" "}
-                    <span
-                      onClick={() => {
-                        setitems((prev) => {
-                          prev.splice(i, 1);
-                          return [...prev];
-                        });
-                      }}
-                      className="bg-white text-[#008000] ml-[5px] pl-[3px] pr-[3px] pt-[0px]"
+          <div className="flex mr-0  bg-white rounded-lg pr-[10px]">
+            <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
+              {items &&
+                items.map((item, i) => {
+                  return (
+                    <p
+                      className="p-1 cursor-pointer rounded-lg bg-[#008000]  text-white mr-[5px] ml-[5px] "
+                      key={i}
                     >
-                      x
-                    </span>
-                  </p>
-                );
-              })}
-            <input
-              type="text"
-              className=" outline-none"
-              value={searchTerm}
-              placeholder="search recipe"
-              onChange={(e) => handleInput(e)}
-            />
-            <SearchRoundedIcon
-              className="ml-[60px]"
-              onClick={(e) => handleSearch(e)}
-            />
+                      {item}{" "}
+                      <span
+                        onClick={() => {
+                          setitems((prev) => {
+                            prev.splice(i, 1);
+                            return [...prev];
+                          });
+                        }}
+                        className="bg-white text-[#008000] ml-[5px] mr-[5px] pl-[3px] pr-[3px] pt-0"
+                      >
+                        x
+                      </span>
+                    </p>
+                  );
+                })}
+
+              <input
+                type="text"
+                className=" outline-none "
+                value={searchTerm}
+                placeholder="search recipe"
+                onChange={(e) => handleInput(e)}
+              />
+            </div>
+
+            <span className="cursor-pointer" onClick={(e) => handleSearch(e)}>
+              <SearchRoundedIcon className="  mt-[10px] w-[45px] h-[43px] bg-white text-[#008000]" />
+            </span>
           </div>
           {/* <TextField
             type="text"
@@ -169,10 +176,14 @@ function Navbar() {
         </div>
         <div className="right_plan">
           <div className="plan_meal">
-            <Button
-              style={{ marginTop: "0px", marginLeft: "30px", color: "white" }}
-              onClick={handleOpen1}
-            >
+            <Link href="/recipeform">
+              <Button className="m-[5px] text-white">
+                <p className="copperplate-text">ADD-RECIPES</p>
+              </Button>
+            </Link>
+          </div>
+          <div className="plan_meal">
+            <Button className="m-[5px] text-white" onClick={handleOpen1}>
               <p className="copperplate-text">MEAL SUGGESTION</p>
             </Button>
             <Modal
@@ -188,10 +199,7 @@ function Navbar() {
             </Modal>
           </div>
           <div className="plan_meal">
-            <Button
-              style={{ marginTop: "0px", marginLeft: "30px", color: "white" }}
-              onClick={handleOpen2}
-            >
+            <Button className="m-[5px] text-white" onClick={handleOpen2}>
               <p className="copperplate-text">PLAN MY MEAL</p>
             </Button>
             <Modal

@@ -18,45 +18,47 @@ function Recipes() {
       router.push("/");
       return;
     }
-    let d = window.atob(link);
+    let d = window.atob(decodeURI(link.split("%3D").join("=")));
     setData(JSON.parse(d));
   }, []);
   console.log(data);
   return (
-    <div className="main_container bg-white flex flex-row items-center w-screen">
-      <div className="w-1/4"></div>
-      <div className="ml-[50px] flex flex-col items-left ">
-        <h1 className="copperplate-text mt-[50px]">{data?.name ?? ""}</h1>
-        <div className="bethefirst">
-          <p className="bethefirst_left">
-            <a href="#" className="underline">
-              Be the first to rate & review!
-            </a>
-          </p>
-          <p className="bethefirst_right">
-            <a href="/" className="underline">
-              1 PHOTO
-            </a>
-          </p>
-        </div>
-        <p className="w-3/4 mt-[20px]">{data?.description ?? ""}</p>
-        <div className="bethefirst mt-[20px]">
-          <p className="bethefirst_left">Submitted by lutzflcat </p>
-          <p className="bethefirst_righty">Published on February 16, 2023</p>
-        </div>
-        <div className="share_section mt-[20px]">
-          <div className="Save">
-            <p>Save</p>
-            <FavoriteBorderSharpIcon className="share_icon" />
+    <div className="main_container bg-white flex flex-row ">
+      <div className="w-[30%]"></div>
+      <div className="w-[50%]  flex flex-col ">
+        <div className="items-left">
+          <h1 className="copperplate-text  mt-[50px]">{data?.name ?? ""}</h1>
+          <div className="bethefirst">
+            <p className="bethefirst_left">
+              <a href="#" className="underline">
+                Be the first to rate & review!
+              </a>
+            </p>
+            <p className="bethefirst_right">
+              <a href="/" className="underline">
+                1 PHOTO
+              </a>
+            </p>
           </div>
-          <div className="Rate_share">
-            <p>Rate</p>
-            <StarOutlineSharpIcon className="share_icon" />
-            <div className="Print">
-              <p>Print</p>
-              <PrintSharpIcon className="share_icon" />
-              <p>Share</p>
-              <ShareOutlinedIcon className="share_icon" />
+          <p className="w-3/4 mt-[20px]">{data?.description ?? ""}</p>
+          <div className="bethefirst mt-[20px]">
+            <p className="bethefirst_left">Submitted by Toluwanimi </p>
+            <p className="bethefirst_righty">Published on May, 2024</p>
+          </div>
+          <div className="share_section mt-[20px]">
+            <div className="Save">
+              <p>Save</p>
+              <FavoriteBorderSharpIcon className="share_icon" />
+            </div>
+            <div className="Rate_share">
+              <p>Rate</p>
+              <StarOutlineSharpIcon className="share_icon" />
+              <div className="Print">
+                <p>Print</p>
+                <PrintSharpIcon className="share_icon" />
+                <p>Share</p>
+                <ShareOutlinedIcon className="share_icon" />
+              </div>
             </div>
           </div>
         </div>
@@ -163,7 +165,7 @@ function Recipes() {
           <p>Check out our Community Guidelines about reviews.</p>
         </div> */}
       </div>
-      <div className="w-1/4"></div>
+      <div className="w-[20%]"></div>
     </div>
   );
 }

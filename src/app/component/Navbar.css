@@ -50,13 +50,21 @@
 .plan_meal {
   border: 3px solid white;
   margin-right: 50px;
-  padding-right: 20px;
+  padding-right: 0px;
   padding-top: 0px;
+  cursor: pointer;
+}
+
+.plan_meal:hover {
+  background-color: white;
+  color: green;
+
+  border: 2px solid green;
 }
 
 .plan_meal P {
   font-size: larger;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .modal_button Button {

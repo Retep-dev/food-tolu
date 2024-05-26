@@ -191,7 +191,7 @@ const FormPage: React.FC = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://da5d-102-89-22-194.ngrok-free.app/recipes",
+      url: "https://3496-2c0f-2a80-11-c110-35b0-870b-beb0-72c7.ngrok-free.app",
       headers: {
         "Content-Type": "application/json",
         Authorization:
@@ -212,159 +212,175 @@ const FormPage: React.FC = () => {
 
   return (
     <div className="mt-[220px] flex flex-row bg-white">
-      <div className="w-1/5"></div>
-      <div className="w-3/5 p-[10%] pt-[5%] border-2 border-[#008000]">
-        <h1 className="border-2 border-white w-[160px] p-[15px] mb-[30px] mt-[20px] bg-[#008000]  text-white">
-          RECIPE FORM
-        </h1>
-        <div className="flex flex-wrap">
-          {data.map((entry: any, index: number) => (
-            <h2
-              onClick={() => viewPrevFormData(index)}
-              key={index}
-              style={{
-                background: curItem == index ? "#008000" : "",
-                color: curItem != index ? "#008000" : "white",
-              }}
-              className="border-2 cursor-pointer border-[#008000]  p-[10px] bg-white text-[#008000] mb-[20px]"
-            >
-              {index + 1}
-            </h2>
-          ))}
+      <div className="w-[20%]"></div>
+      <div className="w-[80%] border-2 border-[#008000]">
+        <div className="h-[200px] p-5">
+          <h1 className="copperplate-text text-[60px] border-2 border-white  p-[15px] ml-[17%]  mt-[50px] text-[#008000] ">
+            RECIPES FORM
+          </h1>
         </div>
-        <div>
-          <form>
-            <div>
-              <label>Name:</label>
-              <input
-                type="text"
-                name="name"
-                value={formEntries.name}
-                onChange={(e) => handleChange(e, 1, null)}
-                className="w-[500px] ml-[62px] border-2 border-[#008000] h-[40px]"
-              />
-            </div>
-            <div className="flex flex-row">
-              <label className="mt-[37px]">Description:</label>
-              <div>
-                <textarea
-                  name="description"
-                  value={formEntries.description}
-                  onChange={(e) => handleChange(e, 1, null)}
-                  className="w-[500px] ml-[22px] border-2 border-[#008000] h-[40px] mt-[30px]"
-                />
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <label className="mt-[37px]">image url:</label>
-              <div>
-                <textarea
-                  name="image"
-                  value={formEntries.image}
-                  onChange={(e) => handleChange(e, 1, null)}
-                  className="w-[500px] ml-[22px] border-2 border-[#008000] h-[40px] mt-[30px]"
-                />
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <label className="mt-[37px]">CookingTime:</label>
-              <div>
-                <input
-                  type="text"
-                  name="cookingTime"
-                  value={formEntries.cookingTime}
-                  onChange={(e) => handleChange(e, 1, null)}
-                  className="w-[500px] ml-[8px] border-2 border-[#008000] h-[40px] mt-[30px]"
-                />
-              </div>
-            </div>
-            <div className="flex flex-row">
-              <label className="mt-[37px]">Instructions:</label>
-              <div>
-                <textarea
-                  name="instructions"
-                  value={formEntries.instructions}
-                  onChange={(e) => handleChange(e, 1, null)}
-                  className="w-[500px] ml-[20px] border-2 border-[#008000] h-[40px] mt-[30px]"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col">
-              <label className="mt-[37px]">Ingredient:</label>
-              <div className="flex flex-wrap items-center">
-                {ingredientsData.map((entry, index) => {
-                  return (
-                    <h2
-                      onClick={() => {
-                        setCurIngrItem(index);
-                        setingredientEntries(ingredientsData[index]);
-                      }}
-                      key={index}
-                      style={{
-                        background: curIngrItem == index ? "#008000" : "",
-                        color: curIngrItem != index ? "#008000" : "white",
-                      }}
-                      className="border-2 cursor-pointer border-[#008000]  p-[5px] px-[10px] bg-white text-[#008000] mb-[20px]"
-                    >
-                      {index + 1}
-                    </h2>
-                  );
-                })}
-              </div>
-
-              <div className="flex w-[100%] space-x-2 my-2">
-                <label className="mt-[37px]">name:</label>
-                <div>
-                  <input
-                    type="text"
-                    name="name"
-                    value={ingredientEntries.name}
-                    onChange={(e) => handleIngredientChange(e)}
-                    className=" border-2 border-[#008000] "
-                  />
-                </div>
-                <div>
-                  <label className="mt-[37px]">quantity:</label>
-                  <input
-                    type="text"
-                    name="quantity"
-                    value={ingredientEntries.quantity}
-                    onChange={(e) => handleIngredientChange(e)}
-                    className=" border-2 border-[#008000] "
-                  />
-                </div>
-              </div>
-              <div className="w-full">
-                <button
-                  className=" border-2 w-fit ml-auto mr-[20px] bg-[#008000] p-[10px] text-white"
-                  type="button"
-                  onClick={() => handleingredientAddEntry(1)}
+        <div className="w-[100%] p-[15%] pt-[5%] ">
+          <div className="flex flex-row ">
+            {/* <div className="flex flex-wrap w-[95%]">
+              {data.map((entry: any, index: number) => (
+                <h2
+                  onClick={() => viewPrevFormData(index)}
+                  key={index}
+                  style={{
+                    background: curItem == index ? "#008000" : "",
+                    color: curItem != index ? "#008000" : "white",
+                  }}
+                  className="border-2 cursor-pointer border-[#008000]  p-[10px] bg-white text-[#008000] mb-[20px]"
                 >
-                  Add more
-                </button>
-              </div>
-            </div>
-          </form>
+                  {index + 1}
+                </h2>
+              ))}
+            </div> */}
+            <button
+              className="copperplate-text border-2 ml-[60px]  bg-[#008000] p-[10px] h-[50px] w-[200px] text-white"
+              type="button"
+              onClick={() => handleAddEntry()}
+            >
+              Add more recipes
+            </button>
+          </div>
+          <div>
+            {data.map((entry: any, i: number) => {
+              return (
+                <form>
+                  <div className="flex flex-row">
+                    <div className="flex flex-col mr-[20px]">
+                      <label className="copperplate-text mt-[10px]">
+                        Name:
+                      </label>
+                      <label className="copperplate-text mt-[43px]">
+                        Description:
+                      </label>
+                      <label className="copperplate-text mt-[46px]">
+                        Image url:
+                      </label>
+                      <label className="copperplate-text mt-[46px]">
+                        CookingTime:
+                      </label>
+                      <label className="copperplate-text mt-[46px]">
+                        Instructions:
+                      </label>
+                    </div>
+                    <div className="flex flex-col w-[70%]">
+                      <input
+                        type="text"
+                        name="name"
+                        value={formEntries.name}
+                        onChange={(e) => handleChange(e, 1, null)}
+                        className="w-[full]  border-2 border-[#008000] h-[40px]"
+                      />
+                      <input
+                        name="description"
+                        value={formEntries.description}
+                        onChange={(e) => handleChange(e, 1, null)}
+                        className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
+                      />
+                      <input
+                        name="image"
+                        value={formEntries.image}
+                        onChange={(e) => handleChange(e, 1, null)}
+                        className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
+                      />
+                      <input
+                        type="text"
+                        name="cookingTime"
+                        value={formEntries.cookingTime}
+                        onChange={(e) => handleChange(e, 1, null)}
+                        className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
+                      />
+                      <input
+                        name="instructions"
+                        value={formEntries.instructions}
+                        onChange={(e) => handleChange(e, 1, null)}
+                        className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
+                      />
+                    </div>
+                  </div>
+                  <div className="mt-[30px]">
+                    <label className="copperplate-text mt-[37px]">
+                      Ingredient:
+                    </label>
+                    <div className="flex flex-col mt-[20px]">
+                      <div className="flex flex-row ">
+                        {/* <div className="flex flex-wrap w-[95%]">
+                      {ingredientsData.map((entry, index) => {
+                        return (
+                          <h2
+                            onClick={() => {
+                              setCurIngrItem(index);
+                              setingredientEntries(ingredientsData[index]);
+                            }}
+                            key={index}
+                            style={{
+                              background: curIngrItem == index ? "#008000" : "",
+                              color: curIngrItem != index ? "#008000" : "white",
+                            }}
+                            className="border-2 cursor-pointer border-[#008000]  p-[5px] px-[10px] bg-white text-[#008000] mb-[20px]"
+                          >
+                            {index + 1}
+                          </h2>
+                        );
+                      })}
+                    </div> */}
+                        <button
+                          className="copperplate-text border-2 ml-[60px]  bg-[#008000] p-[10px] h-[50px] w-[220px] text-white"
+                          type="button"
+                          onClick={() => handleingredientAddEntry(1)}
+                        >
+                          Add more ingredient
+                        </button>
+                      </div>
+
+                      <div className="flex w-[100%] space-x-2 my-2">
+                        <div className="flex mr-[10%] ml-[12%]">
+                          <label className="copperplate-text">Name:</label>
+                          <div className="ml-[5px]">
+                            <input
+                              type="text"
+                              name="name"
+                              value={ingredientEntries.name}
+                              onChange={(e) => handleIngredientChange(e)}
+                              className="w-full border-2 border-[#008000] "
+                            />
+                          </div>
+                        </div>
+                        <div className="flex">
+                          <label className="copperplate-text">Quantity:</label>
+                          <div className="ml-[5px]">
+                            <input
+                              type="text"
+                              name="quantity"
+                              value={ingredientEntries.quantity}
+                              onChange={(e) => handleIngredientChange(e)}
+                              className="w-full border-2 border-[#008000] "
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="w-full"></div>
+                    </div>
+                  </div>
+                </form>
+              );
+            })}
+          </div>
+          {data.length > 0 && (
+            <button
+              className="copperplate-text mt-[50px] border-2   bg-black p-[10px] w-[100%] text-white text-[30px]"
+              type="button"
+              onClick={handleSubmit}
+            >
+              Submit
+            </button>
+          )}
         </div>
-        <button
-          className=" border-2  mr-[20px] bg-[#008000] p-[10px] text-white"
-          type="button"
-          onClick={() => handleAddEntry()}
-        >
-          Add more
-        </button>
-        {data.length > 0 && (
-          <button
-            className=" border-2  mr-[20px] bg-black p-[10px] w-[500px] text-white"
-            type="button"
-            onClick={handleSubmit}
-          >
-            Submit
-          </button>
-        )}
       </div>
-      <div className="w-1/5"></div>
+      <div className="w-[20%]"></div>
     </div>
   );
 };

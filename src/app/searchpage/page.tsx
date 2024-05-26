@@ -15,14 +15,14 @@ const Home = () => {
       return;
     }
     let d = window.atob(link);
-    setData(JSON.parse(d).message.data);
+    setData(JSON.parse(d));
   }, []);
 
   const fetchdata = async () => {
     let config = {
       method: "get",
       maxBodyLength: Infinity,
-      url: "https://03d2-2c0f-2a80-11-c110-5199-362c-2303-7630.ngrok-free.app/recipes",
+      url: "https://b19f-2c0f-2a80-11-c110-41d2-c4f8-db0a-bba.ngrok-free.app/recipes",
       headers: {
         Authorization:
           "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTcxMjI3MTAwMywidXNlcl9pZCI6ImNmNjhjODlkLThhYTEtNGRmZC04ZDI1LTQ3NmU4ODlkMDkwMiJ9.eCiaReR6OG_KnYiDZw1ZgAsEyNIK2nsfHA84cR0QD9s",
@@ -42,13 +42,15 @@ const Home = () => {
   console.log(data);
 
   return (
-    <div className="w-full flex border-black border mx-auto mt-[220px]">
-      <div className="flex mx-auto border-2  w-fit">
+    <div className="w-full flex border-black border mx-auto mt-[220px] h-[1000px] bg-white">
+      <div className="w-1/5"></div>
+      <div className="grid grid-cols-5 mx-auto border-2  w-[3/5]">
         {data &&
           data.map((d: any) => {
             return <Card data={d} />;
           })}
       </div>
+      <div className="w-1/5"></div>
     </div>
   );
 };
