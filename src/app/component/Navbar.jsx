@@ -69,7 +69,7 @@ function Navbar() {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: BASE_URL + "/recipes/search",
+      url: BASE_URL + "/recipes/search?page=1&page_size=10",
       headers: {
         "Content-Type": "application/json",
         Authorization:
@@ -91,14 +91,12 @@ function Navbar() {
       });
   };
   return (
-    <div className="nav_bar z-10 h-[220px] w-screen">
-      <div className="nav_bar_top">
-        <div className="nav_left">
-          <h1 className="copperplate-text text-[60px] mt-[25px]">
-            Tolzrecipes
-          </h1>
+    <div className="nav_bar z-10 h-[fit] w-full p-5">
+      <div className="flex justify-between items-center">
+        <div className="ml-[5%]">
+          <h1 className="copperplate-text text-[3rem]">Tolzrecipes</h1>
         </div>
-        <div className="nav_middle">
+        <div className="w-[25%]">
           <div className="flex mr-0  bg-white rounded-lg pr-[10px]">
             <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
               {items &&
@@ -146,18 +144,18 @@ function Navbar() {
             className="search-box"
           /> */}
         </div>
-        <div className="nav_right mt-[45px]">
+        <div className="flex">
           <AccountCircleIcon className="myaccount text-[70px] pt-[0px] mt-[0px]" />
           <div className="flex mt-[15px]  h-[25px] pb-0">
-            <p className="pr-5">My Account</p>
-            <p className="pr-5">Magazine</p>
-            <p className="pr-5">Newsletter</p>
-            <h4>Sweepstakes</h4>
+            <p className="px-3 border-r-2">My Account</p>
+            <p className="px-3 border-r-2">Magazine</p>
+            <p className="px-3 border-r-2">Newsletter</p>
+            <p className="px-3">Sweepstakes</p>
           </div>
         </div>
       </div>
-      <div className="bottom_button">
-        <div className="nav_bottom">
+      <div className="flex justify-between items-end w-full">
+        <div className="flex space-x-8">
           <Link href="/recipes">
             <p className="copperplate-text">DINNER</p>
           </Link>
@@ -174,15 +172,15 @@ function Navbar() {
           <p className="copperplate-text">CUISINES</p>
           <p className="copperplate-text">ABOUT US</p>
         </div>
-        <div className="right_plan">
-          <div className="plan_meal">
+        <div className="flex space-x-4">
+          <div className="border-2 border-white">
             <Link href="/recipeform">
               <Button className="m-[5px] text-white">
                 <p className="copperplate-text">ADD-RECIPES</p>
               </Button>
             </Link>
           </div>
-          <div className="plan_meal">
+          <div className="border-2 border-white">
             <Button className="m-[5px] text-white" onClick={handleOpen1}>
               <p className="copperplate-text">MEAL SUGGESTION</p>
             </Button>
@@ -198,7 +196,7 @@ function Navbar() {
               </Box>
             </Modal>
           </div>
-          <div className="plan_meal">
+          <div className="border-2 border-white">
             <Button className="m-[5px] text-white" onClick={handleOpen2}>
               <p className="copperplate-text">PLAN MY MEAL</p>
             </Button>

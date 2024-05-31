@@ -32,65 +32,29 @@ const FormPage: React.FC = () => {
     quantity: "",
   });
 
-  const [data, setData] = useState([formEntries]);
-  const [ingredientsData, setIngredientsData] = useState([
-    { name: "", quantity: "" },
-  ]);
-
-  const [curItem, setCurItem] = useState(0);
-  const [curIngrItem, setCurIngrItem] = useState(0);
+  const [data, setData]: any = useState([formEntries]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     index: number,
-    i: any
+    ingredientIndex: any
   ) => {
     const { name, value } = e.target;
-    console.log(value);
 
-    setFormEntries((prevEntries) => {
-      console.log(prevEntries);
-      return {
-        ...prevEntries,
-        [name]: value,
-      };
-    });
-  };
-
-  const handleIngredientChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setingredientEntries((prevEntries) => {
-      //
-      return {
-        ...prevEntries,
-        [name]: value,
-      };
-    });
+    if (ingredientIndex != null) {
+      const updatedFormData = [...data];
+      updatedFormData[index].ingredient[ingredientIndex][`${name}`] = value;
+      setData(updatedFormData);
+      return;
+    }
+    const updatedFormData = [...data];
+    updatedFormData[index][`${name}`] = value;
+    setData(updatedFormData);
   };
 
   const handleAddEntry = () => {
-    const prevData = data;
-    const prevFormEntries = formEntries;
-    ingredientsData.splice(-1, 1);
-    prevFormEntries.ingredient = [...ingredientsData];
-
-    prevData[curItem] = prevFormEntries;
-
-    setingredientEntries({
-      name: "",
-      quantity: "",
-    });
-
-    setIngredientsData([
-      {
-        name: "",
-        quantity: "",
-      },
-    ]);
-
-    setFormEntries({
+    const updatedFormData = [...data];
+    updatedFormData.push({
       name: "",
       description: "",
       cookingTime: "",
@@ -98,80 +62,16 @@ const FormPage: React.FC = () => {
       instructions: "",
       ingredient: [{ name: "", quantity: "" }],
     });
-
-    // console.log(data);
-
-    if (data.length - 1 <= curItem) {
-      setData([
-        ...prevData,
-        {
-          name: "",
-          description: "",
-          cookingTime: "",
-          image: "",
-          instructions: "",
-          ingredient: [{ name: "", quantity: "" }],
-        },
-      ]);
-      setCurItem((prev) => prev + 1);
-      setCurIngrItem(0);
-    } else {
-      setData([...prevData]);
-      setCurItem((prev) => prev + 1);
-      setCurIngrItem(0);
-    }
+    setData(updatedFormData);
   };
 
   const handleingredientAddEntry = (index: number) => {
-    const prevData = ingredientsData;
-    prevData[curIngrItem] = ingredientEntries;
-    // console.log(prevData);
-    let addItems = ingredientsData.length - 1 <= curIngrItem;
-    if (addItems) {
-      setIngredientsData([
-        ...prevData,
-        {
-          name: "",
-          quantity: "",
-        },
-      ]);
-      setingredientEntries({
-        name: "",
-        quantity: "",
-      });
-      setCurIngrItem((prev) => prev + 1);
-    } else {
-      setIngredientsData([...prevData]);
-      setingredientEntries({
-        name: "",
-        quantity: "",
-      });
-      setCurIngrItem((prev) => prev + 1);
-    }
-  };
-
-  // console.log(ingredientsData);
-
-  const viewPrevFormData = (index: number) => {
-    setCurItem(index);
-    setFormEntries(data[index]);
-    setIngredientsData((prev) => [...formEntries.ingredient]);
-    setCurIngrItem(0);
-    setingredientEntries(formEntries.ingredient[0]);
+    const updatedFormData = [...data];
+    updatedFormData[index].ingredient.push({ name: "", quantity: "" });
+    setData(updatedFormData);
   };
 
   const handleSubmit = () => {
-    // Handle submission logic here
-
-    const prevFormEntries = formEntries;
-    ingredientsData.splice(-1, 1);
-    prevFormEntries.ingredient = [...ingredientsData];
-    const prevData = data;
-    if (data.length - 1 <= curItem) {
-      prevData[curItem] = prevFormEntries;
-    }
-    console.log(data);
-
     submitRecipes(data);
     console.log("Submitted Entries:", formEntries);
     // Reset form entries after submission
@@ -211,44 +111,29 @@ const FormPage: React.FC = () => {
   };
 
   return (
-    <div className="mt-[220px] flex flex-row bg-white">
-      <div className="w-[20%]"></div>
-      <div className="w-[80%] border-2 border-[#008000]">
-        <div className="h-[200px] p-5">
-          <h1 className="copperplate-text text-[60px] border-2 border-white  p-[15px] ml-[17%]  mt-[50px] text-[#008000] ">
-            RECIPES FORM
+    <div className="mt-[160px] flex flex-row bg-white">
+      {/* <div className="w-[20%]"></div>/// */}
+      <div className="w-[80%] bg-[#ccc] max-w-[800px] mx-auto border-2 border-[#008000]">
+        <div className="h-[fit] items-center w-[fit]">
+          <h1 className="copperplate-text text-[60px]  p-[15px] ml-[13%]  mt-[50px] text-[#008000] ">
+            ADD RECIPES
           </h1>
         </div>
         <div className="w-[100%] p-[15%] pt-[5%] ">
-          <div className="flex flex-row ">
-            {/* <div className="flex flex-wrap w-[95%]">
-              {data.map((entry: any, index: number) => (
-                <h2
-                  onClick={() => viewPrevFormData(index)}
-                  key={index}
-                  style={{
-                    background: curItem == index ? "#008000" : "",
-                    color: curItem != index ? "#008000" : "white",
-                  }}
-                  className="border-2 cursor-pointer border-[#008000]  p-[10px] bg-white text-[#008000] mb-[20px]"
-                >
-                  {index + 1}
-                </h2>
-              ))}
-            </div> */}
-            <button
-              className="copperplate-text border-2 ml-[60px]  bg-[#008000] p-[10px] h-[50px] w-[200px] text-white"
-              type="button"
-              onClick={() => handleAddEntry()}
-            >
-              Add more recipes
-            </button>
-          </div>
           <div>
-            {data.map((entry: any, i: number) => {
+            {data.map((entry: any, index: number) => {
               return (
-                <form>
-                  <div className="flex flex-row">
+                <form
+                  className=""
+                  style={{ borderTop: "2px solid #008000" }}
+                  key={index}
+                >
+                  <div className="flex flex-row ">
+                    <div className="copperplate-text border-2    bg-[#008000] m-[40px] p-[10px] ml-0 h-[50px] w-fit text-white">
+                      Entry {index + 1}
+                    </div>
+                  </div>
+                  <div className="flex  flex-row">
                     <div className="flex flex-col mr-[20px]">
                       <label className="copperplate-text mt-[10px]">
                         Name:
@@ -266,37 +151,37 @@ const FormPage: React.FC = () => {
                         Instructions:
                       </label>
                     </div>
-                    <div className="flex flex-col w-[70%]">
+                    <div className="flex flex-col w-[80%]">
                       <input
                         type="text"
                         name="name"
-                        value={formEntries.name}
-                        onChange={(e) => handleChange(e, 1, null)}
+                        value={entry.name}
+                        onChange={(e) => handleChange(e, index, null)}
                         className="w-[full]  border-2 border-[#008000] h-[40px]"
                       />
                       <input
                         name="description"
-                        value={formEntries.description}
-                        onChange={(e) => handleChange(e, 1, null)}
+                        value={entry.description}
+                        onChange={(e) => handleChange(e, index, null)}
                         className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
                       />
                       <input
                         name="image"
-                        value={formEntries.image}
-                        onChange={(e) => handleChange(e, 1, null)}
+                        value={entry.image}
+                        onChange={(e) => handleChange(e, index, null)}
                         className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
                       />
                       <input
                         type="text"
                         name="cookingTime"
-                        value={formEntries.cookingTime}
-                        onChange={(e) => handleChange(e, 1, null)}
+                        value={entry.cookingTime}
+                        onChange={(e) => handleChange(e, index, null)}
                         className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
                       />
                       <input
                         name="instructions"
-                        value={formEntries.instructions}
-                        onChange={(e) => handleChange(e, 1, null)}
+                        value={entry.instructions}
+                        onChange={(e) => handleChange(e, index, null)}
                         className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
                       />
                     </div>
@@ -305,73 +190,77 @@ const FormPage: React.FC = () => {
                     <label className="copperplate-text mt-[37px]">
                       Ingredient:
                     </label>
-                    <div className="flex flex-col mt-[20px]">
+                    <div className="flex flex-col mt-[20px] mb-[70px]">
                       <div className="flex flex-row ">
-                        {/* <div className="flex flex-wrap w-[95%]">
-                      {ingredientsData.map((entry, index) => {
-                        return (
-                          <h2
-                            onClick={() => {
-                              setCurIngrItem(index);
-                              setingredientEntries(ingredientsData[index]);
-                            }}
-                            key={index}
-                            style={{
-                              background: curIngrItem == index ? "#008000" : "",
-                              color: curIngrItem != index ? "#008000" : "white",
-                            }}
-                            className="border-2 cursor-pointer border-[#008000]  p-[5px] px-[10px] bg-white text-[#008000] mb-[20px]"
-                          >
-                            {index + 1}
-                          </h2>
-                        );
-                      })}
-                    </div> */}
                         <button
-                          className="copperplate-text border-2 ml-[60px]  bg-[#008000] p-[10px] h-[50px] w-[220px] text-white"
+                          className="copperplate-text border-2 ml-[60px]  bg-[#008000] p-2 h-[fit] w-[fit] text-white"
                           type="button"
-                          onClick={() => handleingredientAddEntry(1)}
+                          onClick={() => handleingredientAddEntry(index)}
                         >
-                          Add more ingredient
+                          +
                         </button>
                       </div>
 
-                      <div className="flex w-[100%] space-x-2 my-2">
-                        <div className="flex mr-[10%] ml-[12%]">
-                          <label className="copperplate-text">Name:</label>
-                          <div className="ml-[5px]">
-                            <input
-                              type="text"
-                              name="name"
-                              value={ingredientEntries.name}
-                              onChange={(e) => handleIngredientChange(e)}
-                              className="w-full border-2 border-[#008000] "
-                            />
-                          </div>
-                        </div>
-                        <div className="flex">
-                          <label className="copperplate-text">Quantity:</label>
-                          <div className="ml-[5px]">
-                            <input
-                              type="text"
-                              name="quantity"
-                              value={ingredientEntries.quantity}
-                              onChange={(e) => handleIngredientChange(e)}
-                              className="w-full border-2 border-[#008000] "
-                            />
-                          </div>
-                        </div>
-                      </div>
+                      {entry.ingredient.map(
+                        (ingrdt: any, ingrdtIndex: number) => {
+                          return (
+                            <div className="flex w-[100%] space-x-2 my-2">
+                              <div className="flex mr-[10%] ml-[12%]">
+                                <label className="copperplate-text">
+                                  Name:
+                                </label>
+                                <div className="ml-[5px]">
+                                  <input
+                                    type="text"
+                                    name="name"
+                                    value={ingrdt.name}
+                                    onChange={(e) =>
+                                      handleChange(e, index, ingrdtIndex)
+                                    }
+                                    className="w-full border-2 border-[#008000] "
+                                  />
+                                </div>
+                              </div>
+                              <div className="flex">
+                                <label className="copperplate-text">
+                                  Quantity:
+                                </label>
+                                <div className="ml-[5px]">
+                                  <input
+                                    type="text"
+                                    name="quantity"
+                                    value={ingrdt.quantity}
+                                    onChange={(e) =>
+                                      handleChange(e, index, ingrdtIndex)
+                                    }
+                                    className="w-full border-2 border-[rgb(0,128,0)] "
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          );
+                        }
+                      )}
+
                       <div className="w-full"></div>
                     </div>
                   </div>
                 </form>
               );
             })}
+            <div className="flex flex-row ">
+              <button
+                className="copperplate-text border-2  mx-auto items-center bg-black p-[10px] h-[50px] w-[fit] text-white"
+                type="button"
+                onClick={() => handleAddEntry()}
+              >
+                Add more entry
+              </button>
+            </div>
           </div>
           {data.length > 0 && (
             <button
-              className="copperplate-text mt-[50px] border-2   bg-black p-[10px] w-[100%] text-white text-[30px]"
+              className="copperplate-text mt-[50px] border-2   bg-[#008000] p-[10px] w-[100%] text-white text-[30px]"
               type="button"
               onClick={handleSubmit}
             >
@@ -380,7 +269,7 @@ const FormPage: React.FC = () => {
           )}
         </div>
       </div>
-      <div className="w-[20%]"></div>
+      {/* <div className="w-[20%]"></div> */}
     </div>
   );
 };

@@ -32,7 +32,7 @@ const Home = () => {
     let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: BASE_URL + "/recipes/search",
+      url: BASE_URL + "/recipes/search?page=1&page_size=10",
       headers: {
         "Content-Type": "application/json",
         Authorization:
