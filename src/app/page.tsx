@@ -3,7 +3,7 @@
 import "./globals.css";
 // import Navbar from "./Navbar/Navbar";
 // import Form from "./Pages/Form";
-import Home from "./component/Home";
+import Home from "./allrecipes/page";
 // import Home from "./Pages/Home";
 // import Recipes from "./Pages/Recipes";
 // import PlanForm from "./Pages/PlanForm";

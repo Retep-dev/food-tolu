@@ -57,7 +57,7 @@ const Home = () => {
   return (
     <div className="w-full flex border-black border mx-auto mt-[160px] h-[1000px] bg-white">
       <div className="w-1/5"></div>
-      <div className="grid grid-cols-5 mx-auto border-2  w-[3/5]">
+      <div className="grid grid-cols-5 mx-auto h-fit w-[3/5]">
         {data &&
           data.map((d: any) => {
             return <Card data={d} key={d} />;

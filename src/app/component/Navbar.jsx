@@ -146,17 +146,17 @@ function Navbar() {
         <div className="flex">
           <AccountCircleIcon className="myaccount text-[70px] pt-[0px] mt-[0px]" />
           <div className="flex mt-[15px]  h-[25px] pb-0">
-            <p className="px-3 border-r-2">My Account</p>
-            <p className="px-3 border-r-2">Magazine</p>
-            <p className="px-3 border-r-2">Newsletter</p>
-            <p className="px-3">Sweepstakes</p>
+            <p className="px-3 xl:border-r-2">My Account</p>
+            <p className="px-3 border-r-2 hidden xl:flex">Magazine</p>
+            <p className="px-3 border-r-2 hidden xl:flex">Newsletter</p>
+            <p className="px-3 hidden xl:flex">Sweepstakes</p>
           </div>
         </div>
       </div>
-      <div className="flex justify-between items-end w-full">
+      <div className="xl:flex justify-between items-end w-full hidden">
         <div className="flex space-x-8">
           <Link href="/recipes">
-            <p className="copperplate-text">DINNER</p>
+            <p className="copperplate-text ">DINNER</p>
           </Link>
           <Link href="/">
             <p className="copperplate-text">MEALS</p>

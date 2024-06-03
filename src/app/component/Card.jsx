@@ -16,7 +16,7 @@ const Card = ({ data }) => {
 
   return (
     <Link href={link ?? ""}>
-      <div className=" border-[#ccc] border m-[10px]">
+      <div className=" border-[#ccc] border m-[10px] h-[220px]">
         <div className="m-[30px]  shadow-sm">
           <img src={data.img_url} width={500} alt="Food"></img>
           <p className="mt-[20px]">{data.name}</p>
