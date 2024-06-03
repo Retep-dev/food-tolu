@@ -44,7 +44,7 @@ const Home = () => {
     axios
       .request(config)
       .then((response: any) => {
-        setData(response.data);
+        setData(response.data.message.data);
         console.log(response);
       })
       .catch((error: any) => {
