@@ -1,5 +1,6 @@
 "use client";
 
+import "dotenv/config";
 import axios from "axios";
 import { TextField } from "@mui/material";
 import React, { useState } from "react";
@@ -59,40 +60,20 @@ function Navbar() {
   };
 
   const handleSearch = (e) => {
-    const data = JSON.stringify({
-      ingredients: [items],
+    const axios = require("axios");
+    let data = JSON.stringify({
+      ingredients: [items[0]],
     });
 
-    // const config = {
-    //   method: "post",
-    //   maxBodyLength: Infinity,
-    //   url: "https://tolzrecipe.onrender.com/recipes/search?page=1&page_size=10",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     Authorization:
-    //       "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTcxMjI3MTAwMywidXNlcl9pZCI6ImNmNjhjODlkLThhYTEtNGRmZC04ZDI1LTQ3NmU4ODlkMDkwMiJ9.eCiaReR6OG_KnYiDZw1ZgAsEyNIK2nsfHA84cR0QD9s",
-    //   },
-    //   data: data,
-    // };
-
-    // axios
-    //   .request(config)
-    //   .then((response) => {
-    //     setdata(response.data);
-    //     console.log(response);
-    //     let d = window.btoa(JSON.stringify(response.data.message.data));
-    //     location.href = "http://localhost:3000/searchpage?data=" + d;
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-
-    const config = {
+    console.log(process.env.BASE_URL);
+    let config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: "https://tolzrecipe.onrender.com/recipes/search?page=1&page_size=10",
+      url: BASE_URL + "/recipes/search?page=1&page_size=10",
       headers: {
         "Content-Type": "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTcxMjI3MTAwMywidXNlcl9pZCI6ImNmNjhjODlkLThhYTEtNGRmZC04ZDI1LTQ3NmU4ODlkMDkwMiJ9.eCiaReR6OG_KnYiDZw1ZgAsEyNIK2nsfHA84cR0QD9s",
       },
       data: data,
     };
@@ -100,54 +81,59 @@ function Navbar() {
     axios
       .request(config)
       .then((response) => {
-        console.log(JSON.stringify(response.data));
+        setdata(response.data);
+        console.log(response);
+        let d = window.btoa(JSON.stringify(response.data.message.data));
+        location.href = "http://localhost:3000/searchpage?data=" + d;
       })
       .catch((error) => {
         console.log(error);
       });
   };
-
   return (
     <div className="nav_bar z-10 h-[fit] w-full p-5">
       <div className="flex justify-between items-center">
         <div className="ml-[5%]">
           <h1 className="copperplate-text text-[3rem]">Tolzrecipes</h1>
         </div>
-        <div className="nav_middle">
-          <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
-            {items &&
-              items.map((item, i) => {
-                return (
-                  <p
-                    className="p-2 cursor-pointer rounded-lg bg-[#008000]  text-white m-1"
-                    key={i}
-                  >
-                    {item}{" "}
-                    <span
-                      onClick={() => {
-                        setitems((prev) => {
-                          prev.splice(i, 1);
-                          return [...prev];
-                        });
-                      }}
-                      className="bg-white text-[#008000] ml-[5px] pl-[3px] pr-[3px] pt-[0px]"
+        <div className="w-[25%]">
+          <div className="flex mr-0  bg-white rounded-lg pr-[10px]">
+            <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
+              {items &&
+                items.map((item, i) => {
+                  return (
+                    <p
+                      className="p-1 cursor-pointer rounded-lg bg-[#008000]  text-white mr-[5px] ml-[5px] "
+                      key={i}
                     >
-                      x
-                    </span>
-                  </p>
-                );
-              })}
-            <input
-              type="text"
-              className=" outline-none"
-              value={searchTerm}
-              placeholder="search recipe"
-              onChange={(e) => handleInput(e)}
-            />
-            <SearchRoundedIcon
-              className="ml-[60px] cursor-pointer flex-end"
-              onClick={(e) => handleSearch(e)}
-            />
+                      {item}{" "}
+                      <span
+                        onClick={() => {
+                          setitems((prev) => {
+                            prev.splice(i, 1);
+                            return [...prev];
+                          });
+                        }}
+                        className="bg-white text-[#008000] ml-[5px] mr-[5px] pl-[3px] pr-[3px] pt-0"
+                      >
+                        x
+                      </span>
+                    </p>
+                  );
+                })}
+
+              <input
+                type="text"
+                className=" outline-none "
+                value={searchTerm}
+                placeholder="search recipe"
+                onChange={(e) => handleInput(e)}
+              />
+            </div>
+
+            <span className="cursor-pointer" onClick={(e) => handleSearch(e)}>
+              <SearchRoundedIcon className="  mt-[10px] w-[45px] h-[43px] bg-white text-[#008000]" />
+            </span>
           </div>
           {/* <TextField
             type="text"

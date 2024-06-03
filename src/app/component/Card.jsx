@@ -21,7 +21,7 @@ const Card = ({ data }) => {
           <img src={data.img_url} width={500} alt="Food"></img>
           <p className="mt-[20px]">{data.name}</p>
         </div>
-        <Star className="ml-0 pl-0 border border-black" />
+        {/* <Star className="ml-0 pl-0 border border-black" /> */}
       </div>
     </Link>
   );
