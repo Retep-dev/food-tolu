@@ -60,12 +60,10 @@ function Navbar() {
   };
 
   const handleSearch = (e) => {
-    const axios = require("axios");
     let data = JSON.stringify({
       ingredients: [items[0]],
     });
 
-    console.log(process.env.BASE_URL);
     let config = {
       method: "post",
       maxBodyLength: Infinity,
@@ -77,14 +75,15 @@ function Navbar() {
       },
       data: data,
     };
-
+    console.log(data);
     axios
       .request(config)
       .then((response) => {
-        setdata(response.data);
+        // setdata(response.data);
         console.log(response);
         let d = window.btoa(JSON.stringify(response.data.message.data));
-        location.href = "http://localhost:3000/searchpage?data=" + d;
+
+        location.href = location.origin + "/searchpage?data=" + d;
       })
       .catch((error) => {
         console.log(error);

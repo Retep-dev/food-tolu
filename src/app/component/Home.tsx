@@ -7,8 +7,8 @@ import { TextField } from "@mui/material";
 const Home = () => {
   const [searchTerm, setSearchTerm] = useState("");
   return (
-    <div className="bg-white">
-      <div className="home-body mx-auto flex flex-col items-center justify-center w-screen ">
+    <div className="bg-white mt-[160px]">
+      <div className="home-body  mx-auto flex flex-col items-center justify-center w-screen ">
         <div className="hero_section mt-[20px]">
           <img
             src="https://www.nairaland.com/attachments/5738702_fufuyt_jpeg4b65d1bfeadad4aa30cc4c95de9146f4"
