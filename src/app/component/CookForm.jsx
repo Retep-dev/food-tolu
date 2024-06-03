@@ -27,7 +27,7 @@ const CookForm = () => {
       <h1 className="copperplate-text">Tolzrecipes</h1>
       <h2 className="copperplate-text">Do you need a food plan?</h2>
       <p className="copperplate-text">
-        Input the food you love to eat, let's create a plan for you.
+        Input the food you love to eat, let us create a plan for you.
       </p>
       <form onSubmit={handleSubmit}>
         {inputs.map((input, index) => (

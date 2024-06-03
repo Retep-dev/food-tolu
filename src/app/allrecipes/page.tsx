@@ -60,7 +60,7 @@ const Home = () => {
       <div className="flex mx-auto border-2  w-[3/5]">
         {data &&
           data.map((d: any) => {
-            return <Card data={d} />;
+            return <Card data={d} key={d} />;
           })}
       </div>
       <div className="w-1/5"></div>
