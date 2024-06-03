@@ -204,7 +204,10 @@ const FormPage: React.FC = () => {
                       {entry.ingredient.map(
                         (ingrdt: any, ingrdtIndex: number) => {
                           return (
-                            <div className="flex w-[100%] space-x-2 my-2">
+                            <div
+                              key={ingrdt}
+                              className="flex w-[100%] space-x-2 my-2"
+                            >
                               <div className="flex mr-[10%] ml-[12%]">
                                 <label className="copperplate-text">
                                   Name:
