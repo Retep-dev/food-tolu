@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import "./Navbar.css";
 import PlanForm from "./PlanForm";
 import CookForm from "./CookForm";
+import LongMenu from "./LongMenu";
 import Link from "next/link";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import { useRouter } from "next/navigation";
@@ -91,50 +92,51 @@ function Navbar() {
   };
   return (
     <div className="nav_bar z-10 h-[fit] w-full p-5">
-      <div className="flex justify-between items-center">
-        <div className="ml-[5%]">
-          <h1 className="copperplate-text text-[3rem]">Tolzrecipes</h1>
-        </div>
-        <div className="w-[25%]">
-          <div className="flex mr-0  bg-white rounded-lg pr-[10px]">
-            <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
-              {items &&
-                items.map((item, i) => {
-                  return (
-                    <p
-                      className="p-1 cursor-pointer rounded-lg bg-[#008000]  text-white mr-[5px] ml-[5px] "
-                      key={i}
-                    >
-                      {item}{" "}
-                      <span
-                        onClick={() => {
-                          setitems((prev) => {
-                            prev.splice(i, 1);
-                            return [...prev];
-                          });
-                        }}
-                        className="bg-white text-[#008000] ml-[5px] mr-[5px] pl-[3px] pr-[3px] pt-0"
-                      >
-                        x
-                      </span>
-                    </p>
-                  );
-                })}
-
-              <input
-                type="text"
-                className=" outline-none "
-                value={searchTerm}
-                placeholder="search recipe"
-                onChange={(e) => handleInput(e)}
-              />
-            </div>
-
-            <span className="cursor-pointer" onClick={(e) => handleSearch(e)}>
-              <SearchRoundedIcon className="  mt-[10px] w-[45px] h-[43px] bg-white text-[#008000]" />
-            </span>
+      <div className="hidden">
+        <div className="flex justify-between items-center">
+          <div className="ml-[5%]">
+            <h1 className="copperplate-text text-[3rem]">Tolzrecipes</h1>
           </div>
-          {/* <TextField
+          <div className="w-[25%]">
+            <div className="flex mr-0  bg-white rounded-lg pr-[10px]">
+              <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
+                {items &&
+                  items.map((item, i) => {
+                    return (
+                      <p
+                        className="p-1 cursor-pointer rounded-lg bg-[#008000]  text-white mr-[5px] ml-[5px] "
+                        key={i}
+                      >
+                        {item}{" "}
+                        <span
+                          onClick={() => {
+                            setitems((prev) => {
+                              prev.splice(i, 1);
+                              return [...prev];
+                            });
+                          }}
+                          className="bg-white text-[#008000] ml-[5px] mr-[5px] pl-[3px] pr-[3px] pt-0"
+                        >
+                          x
+                        </span>
+                      </p>
+                    );
+                  })}
+
+                <input
+                  type="text"
+                  className=" outline-none "
+                  value={searchTerm}
+                  placeholder="search recipe"
+                  onChange={(e) => handleInput(e)}
+                />
+              </div>
+
+              <span className="cursor-pointer" onClick={(e) => handleSearch(e)}>
+                <SearchRoundedIcon className="  mt-[10px] w-[45px] h-[43px] bg-white text-[#008000]" />
+              </span>
+            </div>
+            {/* <TextField
             type="text"
             label="Find a recipe"
             value={searchTerm}
@@ -142,74 +144,205 @@ function Navbar() {
             variant="outlined"
             className="search-box"
           /> */}
+          </div>
+          <div className="flex">
+            <AccountCircleIcon className="myaccount text-[70px] pt-[0px] mt-[0px]" />
+            <div className="flex mt-[15px]  h-[25px] pb-0">
+              <p className="px-3 xl:border-r-2">My Account</p>
+              <p className="px-3 border-r-2 hidden xl:flex">Magazine</p>
+              <p className="px-3 border-r-2 hidden xl:flex">Newsletter</p>
+              <p className="px-3 hidden xl:flex">Sweepstakes</p>
+            </div>
+          </div>
         </div>
-        <div className="flex">
-          <AccountCircleIcon className="myaccount text-[70px] pt-[0px] mt-[0px]" />
-          <div className="flex mt-[15px]  h-[25px] pb-0">
-            <p className="px-3 xl:border-r-2">My Account</p>
-            <p className="px-3 border-r-2 hidden xl:flex">Magazine</p>
-            <p className="px-3 border-r-2 hidden xl:flex">Newsletter</p>
-            <p className="px-3 hidden xl:flex">Sweepstakes</p>
+        <div className="xl:flex justify-between items-end w-full hidden">
+          <div className="flex space-x-8">
+            <Link href="/recipes">
+              <p className="copperplate-text ">DINNER</p>
+            </Link>
+            <Link href="/">
+              <p className="copperplate-text">MEALS</p>
+            </Link>
+            <Link href="/allrecipes">
+              <p className="copperplate-text">RECIPES</p>
+            </Link>
+            <Link href="/searchpage">
+              <p className="copperplate-text">OCCASIONS</p>
+            </Link>
+
+            <p className="copperplate-text">CUISINES</p>
+            <p className="copperplate-text">ABOUT US</p>
+          </div>
+          <div className="flex space-x-4">
+            <div className="border-2 border-white">
+              <Link href="/recipeform">
+                <Button className="m-[5px] text-white">
+                  <p className="copperplate-text">ADD-RECIPES</p>
+                </Button>
+              </Link>
+            </div>
+            <div className="border-2 border-white">
+              <Button className="m-[5px] text-white" onClick={handleOpen1}>
+                <p className="copperplate-text">MEAL SUGGESTION</p>
+              </Button>
+              <Modal
+                keepMounted
+                open={open1}
+                onClose={handleClose1}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description"
+              >
+                <Box maxWidth="md" sx={style}>
+                  <PlanForm />
+                </Box>
+              </Modal>
+            </div>
+            <div className="border-2 border-white">
+              <Button className="m-[5px] text-white" onClick={handleOpen2}>
+                <p className="copperplate-text">PLAN MY MEAL</p>
+              </Button>
+              <Modal
+                keepMounted
+                open={open2}
+                onClose={handleClose2}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description"
+              >
+                <Box sx={style}>
+                  <CookForm />
+                </Box>
+              </Modal>
+            </div>
           </div>
         </div>
       </div>
-      <div className="xl:flex justify-between items-end w-full hidden">
-        <div className="flex space-x-8">
-          <Link href="/recipes">
-            <p className="copperplate-text ">DINNER</p>
-          </Link>
-          <Link href="/">
-            <p className="copperplate-text">MEALS</p>
-          </Link>
-          <Link href="/allrecipes">
-            <p className="copperplate-text">RECIPES</p>
-          </Link>
-          <Link href="/searchpage">
-            <p className="copperplate-text">OCCASIONS</p>
-          </Link>
 
-          <p className="copperplate-text">CUISINES</p>
-          <p className="copperplate-text">ABOUT US</p>
+      <div>
+        <div className="flex justify-between items-center">
+          <div className="ml-[5%] xl:hidden">
+            <LongMenu className="ml-[30%]" />
+          </div>
+          <div className="ml-[0%] xl:ml-[5%]">
+            <h1 className="copperplate-text text-[2.5rem] mr-[10px] xl:mr-[0px] xl:text-[3rem]">
+              Tolzrecipes
+            </h1>
+          </div>
+          <div className="w-[40%] xl:w-[30%] xl:ml-[5%]">
+            <div className="flex mr-0  bg-white rounded-lg pr-[10px]">
+              <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
+                {items &&
+                  items.map((item, i) => {
+                    return (
+                      <p
+                        className="p-1 cursor-pointer rounded-lg bg-[#008000]  text-white mr-[5px] ml-[5px] "
+                        key={i}
+                      >
+                        {item}{" "}
+                        <span
+                          onClick={() => {
+                            setitems((prev) => {
+                              prev.splice(i, 1);
+                              return [...prev];
+                            });
+                          }}
+                          className="bg-white text-[#008000] ml-[5px] mr-[5px] pl-[3px] pr-[3px] pt-0"
+                        >
+                          x
+                        </span>
+                      </p>
+                    );
+                  })}
+
+                <input
+                  type="text"
+                  className=" outline-none "
+                  value={searchTerm}
+                  placeholder="search recipe"
+                  onChange={(e) => handleInput(e)}
+                />
+              </div>
+
+              <span className="cursor-pointer" onClick={(e) => handleSearch(e)}>
+                <SearchRoundedIcon className="  mt-[10px] w-[45px] h-[43px] bg-white text-[#008000]" />
+              </span>
+            </div>
+            {/* <TextField
+            type="text"
+            label="Find a recipe"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            variant="outlined"
+            className="search-box"
+          /> */}
+          </div>
+          <div className="flex">
+            <AccountCircleIcon className="myaccount text-[70px] pt-[0px] mt-[0px]" />
+            <div className="flex mt-[15px]  h-[25px] pb-0">
+              <p className="px-3 xl:border-r-2">My Account</p>
+              <p className="px-3 border-r-2 hidden xl:flex">Magazine</p>
+              <p className="px-3 border-r-2 hidden xl:flex">Newsletter</p>
+              <p className="px-3 hidden xl:flex">Sweepstakes</p>
+            </div>
+          </div>
         </div>
-        <div className="flex space-x-4">
-          <div className="border-2 border-white">
-            <Link href="/recipeform">
-              <Button className="m-[5px] text-white">
-                <p className="copperplate-text">ADD-RECIPES</p>
-              </Button>
+        <div className="xl:flex justify-between items-end w-full hidden">
+          <div className="flex space-x-8">
+            <Link href="/recipes">
+              <p className="copperplate-text ">DINNER</p>
             </Link>
+            <Link href="/">
+              <p className="copperplate-text">MEALS</p>
+            </Link>
+            <Link href="/allrecipes">
+              <p className="copperplate-text">RECIPES</p>
+            </Link>
+            <Link href="/searchpage">
+              <p className="copperplate-text">OCCASIONS</p>
+            </Link>
+
+            <p className="copperplate-text">CUISINES</p>
+            <p className="copperplate-text">ABOUT US</p>
           </div>
-          <div className="border-2 border-white">
-            <Button className="m-[5px] text-white" onClick={handleOpen1}>
-              <p className="copperplate-text">MEAL SUGGESTION</p>
-            </Button>
-            <Modal
-              keepMounted
-              open={open1}
-              onClose={handleClose1}
-              aria-labelledby="keep-mounted-modal-title"
-              aria-describedby="keep-mounted-modal-description"
-            >
-              <Box maxWidth="md" sx={style}>
-                <PlanForm />
-              </Box>
-            </Modal>
-          </div>
-          <div className="border-2 border-white">
-            <Button className="m-[5px] text-white" onClick={handleOpen2}>
-              <p className="copperplate-text">PLAN MY MEAL</p>
-            </Button>
-            <Modal
-              keepMounted
-              open={open2}
-              onClose={handleClose2}
-              aria-labelledby="keep-mounted-modal-title"
-              aria-describedby="keep-mounted-modal-description"
-            >
-              <Box sx={style}>
-                <CookForm />
-              </Box>
-            </Modal>
+          <div className="flex space-x-4">
+            <div className="border-2 border-white">
+              <Link href="/recipeform">
+                <Button className="m-[5px] text-white">
+                  <p className="copperplate-text">ADD-RECIPES</p>
+                </Button>
+              </Link>
+            </div>
+            <div className="border-2 border-white">
+              <Button className="m-[5px] text-white" onClick={handleOpen1}>
+                <p className="copperplate-text">MEAL SUGGESTION</p>
+              </Button>
+              <Modal
+                keepMounted
+                open={open1}
+                onClose={handleClose1}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description"
+              >
+                <Box maxWidth="md" sx={style}>
+                  <PlanForm />
+                </Box>
+              </Modal>
+            </div>
+            <div className="border-2 border-white">
+              <Button className="m-[5px] text-white" onClick={handleOpen2}>
+                <p className="copperplate-text">PLAN MY MEAL</p>
+              </Button>
+              <Modal
+                keepMounted
+                open={open2}
+                onClose={handleClose2}
+                aria-labelledby="keep-mounted-modal-title"
+                aria-describedby="keep-mounted-modal-description"
+              >
+                <Box sx={style}>
+                  <CookForm />
+                </Box>
+              </Modal>
+            </div>
           </div>
         </div>
       </div>
