@@ -6,7 +6,7 @@
   font-size: 20px;
 }
 .main_container h1 {
-  font-size: 80px;
+  font-size: 50px;
 }
 
 .bethefirst {
@@ -113,7 +113,7 @@
 }
 
 .ingredients h1 {
-  font-size: 60px;
+  font-size: 35px;
 }
 
 .list-with-colored-bullets {
@@ -137,18 +137,18 @@
 }
 
 .directions h1 {
-  font-size: 50px;
+  font-size: 35px;
 }
 
 .directions h3 {
-  font-size: 30px;
+  font-size: 25px;
   margin-bottom: 0;
 }
 
 .directions p {
   margin-top: 0;
   width: 100%;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 .made_it_section {

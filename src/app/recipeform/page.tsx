@@ -111,11 +111,11 @@ const FormPage: React.FC = () => {
   };
 
   return (
-    <div className="mt-[160px] flex flex-row bg-white">
+    <div className="mt-[110px] xl:mt-[160px] flex flex-row bg-white">
       {/* <div className="w-[20%]"></div>/// */}
       <div className="w-[80%] bg-[#ccc] max-w-[800px] mx-auto border-2 border-[#008000]">
         <div className="h-[fit] items-center w-[fit]">
-          <h1 className="copperplate-text text-[60px]  p-[15px] ml-[13%]  mt-[50px] text-[#008000] ">
+          <h1 className="copperplate-text xl:text-[50px] text-[40px] p-[15px] ml-[13%]  mt-[50px] text-[#008000] ">
             ADD RECIPES
           </h1>
         </div>
@@ -135,7 +135,7 @@ const FormPage: React.FC = () => {
                   </div>
                   <div className="flex  flex-row">
                     <div className="flex flex-col mr-[20px]">
-                      <label className="copperplate-text mt-[10px]">
+                      <label className="copperplate-text  mt-[10px]">
                         Name:
                       </label>
                       <label className="copperplate-text mt-[43px]">
@@ -157,32 +157,32 @@ const FormPage: React.FC = () => {
                         name="name"
                         value={entry.name}
                         onChange={(e) => handleChange(e, index, null)}
-                        className="w-[full]  border-2 border-[#008000] h-[40px]"
+                        className="w-[full] pl-[10px]  border-2 border-[#008000] h-[40px]"
                       />
                       <input
                         name="description"
                         value={entry.description}
                         onChange={(e) => handleChange(e, index, null)}
-                        className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
+                        className="w-[full] pl-[10px] border-2 border-[#008000] h-[40px] mt-[30px]"
                       />
                       <input
                         name="image"
                         value={entry.image}
                         onChange={(e) => handleChange(e, index, null)}
-                        className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
+                        className="w-[full] pl-[10px] border-2 border-[#008000] h-[40px] mt-[30px]"
                       />
                       <input
                         type="text"
                         name="cookingTime"
                         value={entry.cookingTime}
                         onChange={(e) => handleChange(e, index, null)}
-                        className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
+                        className="w-[full] pl-[10px] border-2 border-[#008000] h-[40px] mt-[30px]"
                       />
                       <input
                         name="instructions"
                         value={entry.instructions}
                         onChange={(e) => handleChange(e, index, null)}
-                        className="w-[full] border-2 border-[#008000] h-[40px] mt-[30px]"
+                        className="w-[full] pl-[10px] border-2 border-[#008000] h-[40px] mt-[30px]"
                       />
                     </div>
                   </div>
@@ -220,7 +220,7 @@ const FormPage: React.FC = () => {
                                     onChange={(e) =>
                                       handleChange(e, index, ingrdtIndex)
                                     }
-                                    className="w-full border-2 border-[#008000] "
+                                    className="w-full pl-[10px] border-2 border-[#008000] "
                                   />
                                 </div>
                               </div>
@@ -236,7 +236,7 @@ const FormPage: React.FC = () => {
                                     onChange={(e) =>
                                       handleChange(e, index, ingrdtIndex)
                                     }
-                                    className="w-full border-2 border-[rgb(0,128,0)] "
+                                    className="w-full pl-[10px] border-2 border-[rgb(0,128,0)] "
                                   />
                                 </div>
                               </div>
@@ -263,7 +263,7 @@ const FormPage: React.FC = () => {
           </div>
           {data.length > 0 && (
             <button
-              className="copperplate-text mt-[50px] border-2   bg-[#008000] p-[10px] w-[100%] text-white text-[30px]"
+              className="copperplate-text mt-[50px] border-2   bg-[#008000] p-[10px] w-[100%] text-white text-[20px] xl:text-[30px]"
               type="button"
               onClick={handleSubmit}
             >

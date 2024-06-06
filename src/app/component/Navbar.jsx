@@ -219,17 +219,17 @@ function Navbar() {
 
       <div>
         <div className="flex justify-between items-center">
-          <div className="ml-[5%] xl:hidden">
-            <LongMenu className="ml-[30%]" />
-          </div>
-          <div className="ml-[0%] xl:ml-[5%]">
-            <h1 className="copperplate-text text-[2.5rem] mr-[10px] xl:mr-[0px] xl:text-[3rem]">
+          <div className="ml-[0%] flex">
+            <div className="ml-[5%] xl:hidden">
+              <LongMenu className="ml-[30%]" />
+            </div>
+            <h1 className="copperplate-text text-[1.5rem] mr-[10px] xl:mr-[0px] xl:text-[2.5rem]">
               Tolzrecipes
             </h1>
           </div>
-          <div className="w-[40%] xl:w-[30%] xl:ml-[5%]">
+          <div className="max-w-[40%] xl:w-[30%] xl:ml-[5%]">
             <div className="flex mr-0  bg-white rounded-lg pr-[10px]">
-              <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2  h-auto">
+              <div className="bg-white overflow-hidden search-box flex flex-wrap items-center p-2 h-[25px] xl:h-auto">
                 {items &&
                   items.map((item, i) => {
                     return (
@@ -263,7 +263,7 @@ function Navbar() {
               </div>
 
               <span className="cursor-pointer" onClick={(e) => handleSearch(e)}>
-                <SearchRoundedIcon className="  mt-[10px] w-[45px] h-[43px] bg-white text-[#008000]" />
+                <SearchRoundedIcon className="  mt-[10px] w-[30px] h-[30px] xl:w-[45px] xl:h-[43px] bg-white text-[#008000]" />
               </span>
             </div>
             {/* <TextField
@@ -288,32 +288,34 @@ function Navbar() {
         <div className="xl:flex justify-between items-end w-full hidden">
           <div className="flex space-x-8">
             <Link href="/recipes">
-              <p className="copperplate-text ">DINNER</p>
+              <p className="copperplate-text text-[0.8rem] ">DINNER</p>
             </Link>
             <Link href="/">
-              <p className="copperplate-text">MEALS</p>
+              <p className="copperplate-text text-[0.8rem]">MEALS</p>
             </Link>
             <Link href="/allrecipes">
-              <p className="copperplate-text">RECIPES</p>
+              <p className="copperplate-text text-[0.8rem]">RECIPES</p>
             </Link>
             <Link href="/searchpage">
-              <p className="copperplate-text">OCCASIONS</p>
+              <p className="copperplate-text text-[0.8rem]">OCCASIONS</p>
             </Link>
 
-            <p className="copperplate-text">CUISINES</p>
-            <p className="copperplate-text">ABOUT US</p>
+            <p className="copperplate-text text-[0.8rem]">CUISINES</p>
+            <p className="copperplate-text text-[0.8rem]">ABOUT US</p>
           </div>
-          <div className="flex space-x-4">
+          <div className="flex space-x-4 text-[0.8rem]">
             <div className="border-2 border-white">
               <Link href="/recipeform">
                 <Button className="m-[5px] text-white">
-                  <p className="copperplate-text">ADD-RECIPES</p>
+                  <p className="copperplate-text text-[0.8rem]">ADD-RECIPES</p>
                 </Button>
               </Link>
             </div>
             <div className="border-2 border-white">
               <Button className="m-[5px] text-white" onClick={handleOpen1}>
-                <p className="copperplate-text">MEAL SUGGESTION</p>
+                <p className="copperplate-text text-[0.8rem]">
+                  MEAL SUGGESTION
+                </p>
               </Button>
               <Modal
                 keepMounted
@@ -329,7 +331,7 @@ function Navbar() {
             </div>
             <div className="border-2 border-white">
               <Button className="m-[5px] text-white" onClick={handleOpen2}>
-                <p className="copperplate-text">PLAN MY MEAL</p>
+                <p className="copperplate-text text-[0.8rem]">PLAN MY MEAL</p>
               </Button>
               <Modal
                 keepMounted
