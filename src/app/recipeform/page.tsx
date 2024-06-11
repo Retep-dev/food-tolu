@@ -113,7 +113,7 @@ const FormPage: React.FC = () => {
   return (
     <div className="mt-[110px] xl:mt-[160px] flex flex-row bg-white">
       {/* <div className="w-[20%]"></div>/// */}
-      <div className="w-[80%] bg-[#ccc] max-w-[800px] mx-auto border-2 border-[#008000]">
+      <div className="w-[80%] bg-white max-w-[800px] mx-auto ">
         <div className="h-[fit] items-center w-[fit]">
           <h1 className="copperplate-text xl:text-[50px] text-[40px] p-[15px] ml-[13%]  mt-[50px] text-[#008000] ">
             ADD RECIPES

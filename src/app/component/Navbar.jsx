@@ -72,7 +72,7 @@ function Navbar() {
       headers: {
         "Content-Type": "application/json",
         Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTcxMjI3MTAwMywidXNlcl9pZCI6ImNmNjhjODlkLThhYTEtNGRmZC04ZDI1LTQ3NmU4ODlkMDkwMiJ9.eCiaReR6OG_KnYiDZw1ZgAsEyNIK2nsfHA84cR0QD9s",
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVtYWlsQGdtYWlsLmNvbSIsImV4cCI6MTcxODI2ODA1NSwidXNlcl9pZCI6Ijk0ZGFiM2EyLTAwMWMtNGIzYi04YmUxLTFiODAyNjVkMjhjMyJ9.VqTSiZlRsYuqWF-nwExHNvOu6HinsfMgSXP6ep3j1V8",
       },
       data: data,
     };
@@ -290,8 +290,8 @@ function Navbar() {
             <Link href="/recipes">
               <p className="copperplate-text text-[0.8rem] ">DINNER</p>
             </Link>
-            <Link href="/">
-              <p className="copperplate-text text-[0.8rem]">MEALS</p>
+            <Link href="/Login">
+              <p className="copperplate-text text-[0.8rem]">LOGIN</p>
             </Link>
             <Link href="/allrecipes">
               <p className="copperplate-text text-[0.8rem]">RECIPES</p>

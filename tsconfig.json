@@ -29,7 +29,8 @@
     "src/app/component/Star.jsx",
     "src/app/component/Navbar.tsx",
     "src/app/component/CookForm.jsx",
-    "src/app/component/PlanForm.jsx"
+    "src/app/component/PlanForm.jsx",
+    "src/app/Login/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

@@ -1,0 +1,135 @@
+.login-container {
+  display: flex;
+  height: 100vh;
+
+  /* max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #f7f7f7;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center; 
+    } */
+}
+
+.left-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left-container img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.right-container {
+  width: 50%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin-bottom: 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid black; */
+}
+
+label {
+  text-align: left;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  font-size: small;
+  font-weight: 700;
+}
+
+.password-field input {
+  outline: none;
+  border: none;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.right-left {
+  width: 300px;
+  /* border: 1px solid #ccc; */
+  text-align: left;
+  padding-left: 0px;
+}
+
+.log-in-mail {
+  color: black;
+  text-underline-offset: var(--giraffe-text-underline-offset-md, 0.625rem);
+  width: 300px;
+  text-align: left;
+}
+
+.password-field {
+  height: 40px;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #ccc;
+  display: flex;
+  text-align: left;
+}
+
+.show-password {
+  font-size: x-small;
+  cursor: pointer;
+}
+
+.flex input {
+  padding: 0;
+  margin: 0;
+  width: 20px;
+}
+
+.flex p {
+  padding: 0;
+  margin: 0;
+}
+
+.flex {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  font-size: x-small;
+}
+
+button {
+  padding: 10px;
+  background-color: green;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.forgot-password {
+  margin-top: 10px;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.forgot-password {
+  color: black;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+  color: black;
+}
