@@ -129,7 +129,7 @@ const LoginEmail = () => {
           </form>
           <Link href="/Signin">
             <p className="forgot-password copperplate-text text-[0.8rem] ">
-              Don't have an account? Join now
+              Need an account? Join now
             </p>
           </Link>
         </div>
