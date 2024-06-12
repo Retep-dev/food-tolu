@@ -25,8 +25,8 @@ export default function RootLayout({
       const currentPath = window.location.href;
       console.log(currentPath);
       if (
-        currentPath === "http://localhost:3000/" ||
-        // currentPath === "https://food-tolu-14g4.vercel.app/" ||
+        // currentPath === "http://localhost:3000/" ||
+        currentPath === "https://food-tolu-14g4.vercel.app/" ||
         currentPath.includes("Signin")
       ) {
         setShowNavbar(false);
