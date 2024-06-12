@@ -43,7 +43,7 @@ const LoginEmail = () => {
       console.log("Login successful:", data);
 
       // Redirect to home page
-      router.push("/allrecipes");
+      location.href = location.origin + "/allrecipes";
     } catch (error) {
       console.error("Login error:", error);
       setErrorMessage("An error occurred during login.");

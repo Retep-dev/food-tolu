@@ -23,7 +23,7 @@ function Recipes() {
   }, []);
   console.log(data);
   return (
-    <div className="main_container mt-[110px] xl:mt-[160px] bg-white flex flex-row ">
+    <div className="main_container mt-[110px] xl:mt-[140px] bg-white flex flex-row ">
       <div className="xl:w-[20%]  w-[5%]"></div>
       <div className="w-[70%] xl:w-[50%] flex flex-col ">
         <div className="items-left">

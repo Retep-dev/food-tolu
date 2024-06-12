@@ -42,7 +42,7 @@ const Home = () => {
   console.log(data);
 
   return (
-    <div className="w-full flex border-black border mx-auto mt-[10px] xl:mt-[150px] xl:pt-[0px] pt-[100px] h-[fit] min-h-[100vh] bg-white">
+    <div className="w-full flex border-black border mx-auto mt-[10px] xl:mt-[137px] xl:pt-[0px] pt-[100px] h-[fit] min-h-[100vh] bg-white">
       <div className="w-1/5"></div>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 mx-auto mt-[30px] mb-[60px] m-[20px] h-fit w-[3/5]">
         {data &&

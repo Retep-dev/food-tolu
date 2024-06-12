@@ -4,7 +4,6 @@ import { Inter } from "next/font/google";
 import { useEffect, useState } from "react"; // Import useEffect and useState
 import "./globals.css";
 import Navbar from "./component/Navbar";
-import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,22 +18,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const [showNavbar, setShowNavbar] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      const currentPath = window.location.href;
-      console.log(currentPath);
-      if (
-        currentPath === "http://localhost:3000/" ||
-        // currentPath === "https://food-tolu-14g4.vercel.app/" ||
-        currentPath.includes("Signin")
-      ) {
-        setShowNavbar(false);
-      } else {
-        setShowNavbar(true);
-      }
+    if (isLoading) {
+      setIsLoading(false);
+      return;
     }
-  }, []);
+    const currentPath = window.location.pathname;
+    if (currentPath == "/" || currentPath == "signin") {
+      setShowNavbar(false);
+    } else {
+      setShowNavbar(true);
+    }
+  }, [isLoading]);
 
   return (
     <html lang="en">

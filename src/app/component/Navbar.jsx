@@ -287,18 +287,16 @@ function Navbar() {
         </div>
         <div className="xl:flex justify-between items-end w-full hidden">
           <div className="flex space-x-8">
-            <Link href="/recipes">
-              <p className="copperplate-text text-[0.8rem] ">DINNER</p>
-            </Link>
-            <Link href="/Login">
-              <p className="copperplate-text text-[0.8rem]">LOGIN</p>
+            <p className="copperplate-text text-[0.8rem] ">DINNER</p>
+
+            <Link href="/users">
+              <p className="copperplate-text text-[0.8rem]">USERS</p>
             </Link>
             <Link href="/allrecipes">
               <p className="copperplate-text text-[0.8rem]">RECIPES</p>
             </Link>
-            <Link href="/searchpage">
-              <p className="copperplate-text text-[0.8rem]">OCCASIONS</p>
-            </Link>
+
+            <p className="copperplate-text text-[0.8rem]">OCCASIONS</p>
 
             <p className="copperplate-text text-[0.8rem]">CUISINES</p>
             <p className="copperplate-text text-[0.8rem]">ABOUT US</p>
