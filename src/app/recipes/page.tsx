@@ -92,18 +92,28 @@ function Recipes() {
         <div className="">
           <ul className="list-with-colored-bullets">
             {/* <li className="list_text">{data?.ingredients ?? ""}</li> */}
-            <li>4 tablespoons olive oil, divided</li>
+            {/* <li>4 tablespoons olive oil, divided</li> */}
             {/* <li>4 tablespoons olive oil, divided</li>
             <li>4 tablespoons olive oil, divided</li>
             <li>4 tablespoons olive oil, divided</li>
             <li>4 tablespoons olive oil, divided</li>
             <li>4 tablespoons olive oil, divided</li> */}
+            {data?.ingredients?.map((ingredient: any, index: any) => (
+              <li
+                key={index}
+              >{`${ingredient.name} - ${ingredient.quantity}`}</li>
+            ))}
           </ul>
         </div>
         <div className="directions mt-[20px]">
           <h1 className="copperplate-text">Directions</h1>
           <h3>Steps</h3>
-          <p>{data?.instructions ?? ""}</p>
+          {/* <p>{data?.instructions ?? ""}</p> */}
+          <ul className="list-with-colored-bullets">
+            {data?.instructions?.map((instruction: any, index: any) => (
+              <li key={index}>{instruction}</li>
+            ))}
+          </ul>
           {/* <h3>Step 2</h3>
           <p>
             Heat remaining 2 tablespoons olive oil in the pot; add onions and
