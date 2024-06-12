@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import "./login.css";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const LoginEmail = () => {
   const [email, setEmail] = useState("");
@@ -42,7 +43,7 @@ const LoginEmail = () => {
       console.log("Login successful:", data);
 
       // Redirect to home page
-      router.push("/");
+      router.push("/allrecipes");
     } catch (error) {
       console.error("Login error:", error);
       setErrorMessage("An error occurred during login.");
@@ -58,15 +59,16 @@ const LoginEmail = () => {
   // };
 
   return (
-    <div className="flex flex-col md:flex-row h-[100vh] bg-white">
+    <div className="flex flex-col md:flex-row h-[450px]  bg-white">
       <div className="w-fit md:w-[50%]">
         <img
-          src="https://www.nairaland.com/attachments/5738702_fufuyt_jpeg4b65d1bfeadad4aa30cc4c95de9146f4"
+          src="https://img.freepik.com/free-photo/rustic-winter-corn-stew-food-arrangement_23-2148717376.jpg?t=st=1718156769~exp=1718157369~hmac=da45934dd94b402d9731e470f973000660c5c0510c0504333bcf62f86ec89e53"
           alt="Food"
-          className="h-[608px]"
+          className="h-[700px]"
+          width="800"
         />
       </div>
-      <div className="p-[15%] bg-white w-screen md:w-[50%]">
+      <div className="p-[15%]  h-[700px] bg-white w-screen md:w-[50%]">
         <div>
           <div className="w-[300px]">
             <h1 className="copperplate-text text-[2rem] text-[#008000]">
@@ -87,7 +89,7 @@ const LoginEmail = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="yourname@example.com"
-                className="h-[40px] p-[10px]  border-2 border-[#008000] w-[300px]"
+                className="h-[40px] pl-[10px]  border-2 border-[#008000] w-[300px]"
                 required
               />
             </div>
@@ -99,7 +101,7 @@ const LoginEmail = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
-                className="h-[40px] p-[10px]  border-2 border-[#008000] w-[300px]"
+                className="h-[40px] p-[10px] pl-[20px]  border-2 border-[#008000] w-[300px]"
                 required
               />
               <span
@@ -109,22 +111,27 @@ const LoginEmail = () => {
                 {showPassword ? "HIDE" : "SHOW"}
               </span>
             </div>
-            <div className="flex flex-row align-start gap-[-30px] w-[200px]">
+            <div className="flex flex-row align-start gap-[-30px] w-[250px]">
               <input
                 type="checkbox"
                 id="keepLoggedIn"
                 checked={keepLoggedIn}
                 onChange={(e) => setKeepLoggedIn(e.target.checked)}
+                className="w-[20%]"
               />
 
-              <p className="text-black">Keep me logged in</p>
+              <p className="text-black w-[70%]">Keep me logged in</p>
             </div>
 
             <button type="submit" className="w-[300px]">
               Log in with email
             </button>
           </form>
-          <p className="forgot-password">Forgot password?</p>
+          <Link href="/Signin">
+            <p className="forgot-password copperplate-text text-[0.8rem] ">
+              Don't have an account? Join now
+            </p>
+          </Link>
         </div>
       </div>
     </div>

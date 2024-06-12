@@ -64,15 +64,16 @@ const Signin = () => {
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-full md:h-screen bg-white">
-      <div className="w-[50%] bg-white">
+    <div className="flex flex-col md:flex-row h-[450px]  bg-white">
+      <div className="w-fit md:w-[50%]">
         <img
-          src="https://www.nairaland.com/attachments/5738702_fufuyt_jpeg4b65d1bfeadad4aa30cc4c95de9146f4"
+          src="https://img.freepik.com/free-photo/rustic-winter-corn-stew-food-arrangement_23-2148717376.jpg?t=st=1718156769~exp=1718157369~hmac=da45934dd94b402d9731e470f973000660c5c0510c0504333bcf62f86ec89e53"
           alt="Food"
-          className="h-[608px]"
+          className="h-[700px]"
+          width="800"
         />
       </div>
-      <div className="p-[15%] bg-white">
+      <div className="pl-[15%]  pr-[15%] pt-[10%]  h-[700px] bg-white w-screen md:w-[50%]">
         <div>
           <div className="w-[300px]">
             <h1 className="copperplate-text text-[2rem] text-[#008000]">
@@ -151,7 +152,7 @@ const Signin = () => {
               </span>
             </div>
 
-            <button className="mt-[20px]" type="submit">
+            <button className="mt-[10px] w-[300px]" type="submit">
               Sign In
             </button>
 

@@ -22,7 +22,7 @@ export default function RootLayout({
   useEffect(() => {
     if (typeof window !== "undefined") {
       const currentPath = window.location.href;
-      if (currentPath.includes("Login") || currentPath.includes("Signin")) {
+      if (currentPath.includes("/") || currentPath.includes("Signin")) {
         setShowNavbar(false);
       } else {
         setShowNavbar(true);
